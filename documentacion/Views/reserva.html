@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reserva de Dispositivos - TechPhone EnterpriseCore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#b7c8de",
+                        "secondary-fixed": "#d2e4ff",
+                        "surface-tint": "#005ac4",
+                        "primary-fixed": "#d8e2ff",
+                        "outline-variant": "#c1c6d7",
+                        "on-tertiary-fixed-variant": "#38485a",
+                        "on-tertiary-container": "#fffeff",
+                        "background": "#f8f9fa",
+                        "surface-bright": "#f8f9fa",
+                        "secondary": "#49607d",
+                        "on-tertiary-fixed": "#0c1d2d",
+                        "on-surface": "#191c1d",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary": "#ffffff",
+                        "outline": "#727786",
+                        "primary-fixed-dim": "#aec6ff",
+                        "surface-container-high": "#e7e8e9",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#c4dcfe",
+                        "surface-variant": "#e1e3e4",
+                        "primary-container": "#0070f2",
+                        "primary": "#0058c2",
+                        "on-primary-container": "#fffeff",
+                        "on-primary-fixed-variant": "#004396",
+                        "on-secondary-container": "#4a617e",
+                        "inverse-surface": "#2e3132",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary": "#4e5e71",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "on-background": "#191c1d",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001a42",
+                        "tertiary-fixed": "#d3e4fb",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-secondary-fixed": "#021c36",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#aec6ff",
+                        "secondary-fixed-dim": "#b1c8ea",
+                        "on-secondary-fixed-variant": "#324864",
+                        "surface-dim": "#d9dadb",
+                        "tertiary-container": "#67778b",
+                        "on-surface-variant": "#414754",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container": "#edeeef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "gutter": "1rem",
+                        "base": "4px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "display": ["Hanken Grotesk", "sans-serif"],
+                        "label-md": ["Hanken Grotesk", "sans-serif"],
+                        "headline-lg": ["Hanken Grotesk", "sans-serif"],
+                        "headline-md": ["Hanken Grotesk", "sans-serif"],
+                        "body-lg": ["Hanken Grotesk", "sans-serif"],
+                        "body-md": ["Hanken Grotesk", "sans-serif"],
+                        "caption": ["Hanken Grotesk", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "caption": ["11px", { "lineHeight": "14px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-on-tertiary-fixed dark:bg-on-tertiary-fixed text-primary-fixed dark:text-primary-fixed-dim font-body-md text-body-md h-16 w-full flex items-center border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none fixed top-0 left-0 z-50 justify-between px-md max-w-full">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">developer_board</span>
+<div class="font-headline-lg text-headline-lg font-bold text-on-primary-fixed dark:text-primary-fixed-dim tracking-tight">EnterpriseCore</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center">
+<img alt="User profile" class="object-cover w-full h-full" data-alt="A close up professional headshot of an individual, corporate modern aesthetic, soft high-key lighting, bright light-mode environment. The individual is wearing professional attire against a very subtle, clean gradient background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUHtT8cHk_9AiG-cCQ9W1JMWy3Di4W8GOxpJsh9wH7yI7VJGmxZd6EI20PLgL3PN9OiCTR5VmHGpcPM88jktQIaNTndoSSS02Jzv1h4XjYvvzJ1W_kdCxa0RA2pADHaYL4nDz2f2NeQAqK8l8DdL4LY8kTf0j-6xUybIELmTR-ri6kKsIfe7n-UpCAiTxAn3klj1ef1tvmjV5UCNh8mu2dBoruMTzFNUW3FPg9Mrp3WHsipFm1xStWww">
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16 h-screen">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex flex-col bg-surface-container-low dark:bg-surface-dim font-label-md text-label-md w-60 h-[calc(100vh-64px)] fixed left-0 top-16 border-r border-outline-variant dark:border-outline py-md overflow-y-auto transition-all duration-150 ease-in-out z-40">
+<div class="px-md mb-lg">
+<div class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface">TechPhone</div>
+<div class="text-on-surface-variant text-caption mt-xs">V2.4.0</div>
+</div>
+<div class="flex flex-col gap-xs flex-1 px-sm">
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-sm px-sm py-sm rounded-r-full text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="">Panel de Control</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-r-full text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="">Ventas</span>
+</a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-r-full text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#"><span class="material-symbols-outlined" data-icon="devices">devices</span><span class="">Stock</span></a>
+<a class="flex items-center gap-sm px-sm py-sm rounded-r-full text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span class="">Entrada de Clientes</span>
+</a>
+<!-- Active Tab Added per prompt -->
+<a class="flex items-center gap-sm px-sm py-sm rounded-r-full bg-secondary-container dark:bg-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed border-l-4 border-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<span class="">Reserva de Dispositivos</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-60 p-md md:p-lg bg-background overflow-y-auto">
+<div class="max-w-container-max mx-auto space-y-lg">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md border-b border-outline-variant pb-sm">
+<div>
+<h1 class="font-display text-display text-on-background">Reserva de Dispositivos</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-base">Gestiona las reservas de equipos para clientes corporativos.</p>
+</div>
+<button class="h-10 px-md bg-primary text-on-primary font-label-md text-label-md rounded hover:opacity-90 transition-opacity flex items-center gap-xs" id="open-modal-btn"><span class="material-symbols-outlined">add</span>NUEVA RESERVA</button></div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-lg">
+<!-- Main Data Table Section (Cols: 8 on xl) -->
+<div class="xl:col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm flex flex-col overflow-hidden">
+<!-- Toolbar -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm p-md mb-md">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md items-end">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">DNI Cliente</label>
+<input class="bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="DNI" type="text">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Teléfono</label>
+<input class="bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="Teléfono" type="tel">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Número de Serie</label>
+<input class="bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="Nº Serie" type="text">
+</div>
+<div class="flex items-center justify-end">
+<button class="flex items-center gap-xs text-primary hover:text-primary-container transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-size: 18px;">restart_alt</span>
+                Restablecer Filtros
+            </button>
+</div>
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Fecha de Reserva</label>
+<div class="flex items-center gap-sm">
+<input class="flex-1 bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="Desde" type="date">
+<span class="text-on-surface-variant font-body-md">a</span>
+<input class="flex-1 bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="Hasta" type="date">
+</div>
+</div>
+<div class="flex flex-col gap-xs md:col-span-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Vendedor</label>
+<input class="bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="Vendedor" type="text">
+</div>
+</div>
+</div>
+<!-- Table Wrapper -->
+<div class="flex-1 overflow-auto p-sm bg-surface-container-lowest">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-low z-10 border-b border-outline-variant"><tr><th class="py-sm px-md font-label-md text-label-md text-on-surface">Cliente</th><th class="py-sm px-md font-label-md text-label-md text-on-surface">Vendedor</th><th class="py-sm px-md font-label-md text-label-md text-on-surface">N° Serie</th><th class="py-sm px-md font-label-md text-label-md text-on-surface text-center">Estado</th><th class="py-sm px-md font-label-md text-label-md text-on-surface">Fecha Reserva</th><th class="py-sm px-md font-label-md text-label-md text-on-surface">Fecha Entrega</th><th class="py-sm px-md font-label-md text-label-md text-on-surface">Observación</th><th class="py-sm px-md font-label-md text-label-md text-on-surface">Historial</th><th class="py-sm px-md font-label-md text-label-md text-on-surface text-center">ACCIONES</th></tr></thead>
+<tbody class="font-body-md text-body-md"><tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors h-10 cursor-pointer group"><td class="py-sm px-md text-primary hover:underline">Acme Corp</td><td class="py-sm px-md text-primary hover:underline">Juan Pérez</td><td class="py-sm px-md text-primary hover:underline font-mono text-[12px]">LNV-8923-XC</td><td class="py-sm px-md text-center"><span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-caption font-bold">Confirmada</span></td><td class="py-sm px-md text-on-surface-variant">2023-10-25</td><td class="py-sm px-md text-on-surface-variant">2023-10-30</td><td class="py-sm px-md text-on-surface-variant truncate max-w-[150px]">Urgente para proyecto X</td><td class="py-sm px-md text-primary hover:underline">Ver Detalle</td><td class="py-sm px-md text-center"><div class="flex items-center justify-center"><button class="text-on-surface-variant hover:text-primary transition-colors" title="Editar"><span class="material-symbols-outlined text-[18px] text-primary">edit</span></button><button class="text-on-surface-variant hover:text-error transition-colors ml-sm" title="Eliminar"><span class="material-symbols-outlined text-[18px] text-error">delete</span></button></div></td></tr><tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors h-10 cursor-pointer group"><td class="py-sm px-md text-primary hover:underline">Global Tech</td><td class="py-sm px-md text-primary hover:underline">Ana García</td><td class="py-sm px-md text-primary hover:underline font-mono text-[12px]">MBP-2023-16M</td><td class="py-sm px-md text-center"><span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant text-caption font-bold">Pendiente</span></td><td class="py-sm px-md text-on-surface-variant">2023-10-26</td><td class="py-sm px-md text-on-surface-variant">2023-11-02</td><td class="py-sm px-md text-on-surface-variant truncate max-w-[150px]">Requiere cargador extra</td><td class="py-sm px-md text-primary hover:underline">Ver Detalle</td><td class="py-sm px-md text-center"><div class="flex items-center justify-center"><button class="text-on-surface-variant hover:text-primary transition-colors" title="Editar"><span class="material-symbols-outlined text-[18px] text-primary">edit</span></button><button class="text-on-surface-variant hover:text-error transition-colors ml-sm" title="Eliminar"><span class="material-symbols-outlined text-[18px] text-error">delete</span></button></div></td></tr></tbody>
+</table>
+</div>
+<div class="p-sm border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-caption text-on-surface-variant">
+<span class="">Mostrando 1-3 de 156 dispositivos</span>
+<div class="flex gap-sm">
+<button class="p-xs hover:bg-surface-container-high rounded disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[16px]">chevron_left</span></button>
+<button class="p-xs hover:bg-surface-container-high rounded"><span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Reservation Form Section (Cols: 4 on xl) -->
+</div>
+</div>
+</main>
+</div>
+<div class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/50 backdrop-blur-sm" id="reservation-modal"><div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm w-full max-w-2xl overflow-hidden flex flex-col"><div class="p-md border-b border-outline-variant flex justify-between items-center"><h2 class="font-headline-md text-headline-md text-on-surface">Nueva Reserva</h2><button class="p-xs hover:bg-surface-container-high rounded transition-colors" id="close-modal-btn"><span class="material-symbols-outlined">close</span></button></div><form class="p-md space-y-md overflow-y-auto max-h-[80vh]"><div class="grid grid-cols-2 gap-md"><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface">Cliente</label><input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface" placeholder="Nombre del cliente" type="text"></div><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface">Vendedor</label><input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface" placeholder="Nombre del vendedor" type="text"></div></div><div class="grid grid-cols-2 gap-md"><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface">N° Serie</label><input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface" placeholder="Ej: LNV-8923-XC" type="text"></div><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface">Estado</label><select class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface"><option>Pendiente</option><option>Confirmada</option><option>Entregada</option></select></div></div><div class="grid grid-cols-2 gap-md"><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface">Fecha Reserva</label><input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface" type="date"></div><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface">Fecha Entrega</label><input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface" type="date"></div></div><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface">Observación</label><textarea class="p-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md text-on-surface resize-none" rows="2"></textarea></div><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface">Historial</label><div class="p-sm bg-surface-container-low rounded text-caption text-on-surface-variant">No hay registros previos.</div></div><div class="pt-md border-t border-outline-variant flex justify-end gap-sm"><button class="px-md py-sm rounded bg-surface-container-lowest border border-primary text-primary font-label-md text-label-md hover:bg-surface-container-low transition-colors" id="cancel-modal-btn" type="button">Cancelar</button><button class="px-md py-sm rounded bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-opacity" type="submit">Confirmar Reserva</button></div></form></div></div><script>const modal = document.getElementById('reservation-modal'); const openBtn = document.getElementById('open-modal-btn'); const closeBtn = document.getElementById('close-modal-btn'); const cancelBtn = document.getElementById('cancel-modal-btn'); openBtn.onclick = () => { modal.classList.remove('hidden'); modal.classList.add('flex'); }; const closeModal = () => { modal.classList.add('hidden'); modal.classList.remove('flex'); }; closeBtn.onclick = closeModal; cancelBtn.onclick = closeModal; window.onclick = (event) => { if (event.target == modal) closeModal(); };</script>
+<div class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/50 backdrop-blur-sm" id="delete-confirm-modal"><div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm w-full max-w-md overflow-hidden flex flex-col"><div class="p-md border-b border-outline-variant flex items-center gap-sm text-error"><span class="material-symbols-outlined">warning</span><h2 class="font-headline-md text-headline-md">Confirmar Eliminación</h2></div><div class="p-md"><p class="font-body-md text-body-md text-on-surface-variant">¿Está seguro de que desea eliminar esta reserva? Esta acción no se puede deshacer.</p></div><div class="p-md border-t border-outline-variant flex justify-end gap-sm"><button class="px-md py-sm rounded bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors" onclick="document.getElementById('delete-confirm-modal').classList.add('hidden')">Cancelar</button><button class="px-md py-sm rounded bg-error text-on-error font-label-md text-label-md hover:opacity-90 transition-opacity">Eliminar Reserva</button></div></div></div>
+
+
+
+</body></html>

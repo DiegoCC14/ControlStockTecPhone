@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}Ventas - TecPhone{% endblock %}
+
+{% block nav_ventas %}bg-secondary-container text-on-secondary-container border-l-4 border-primary icon-fill{% endblock %}
+
+{% block content %}
+<div class="max-w-[container-max] mx-auto space-y-md">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md mb-lg">
+        <div>
+            <h1 class="font-display text-display text-on-surface mb-sm">Ventas</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">Resumen de todas las ventas de dispositivos en los centros regionales.</p>
+        </div>
+        <button class="bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-lg flex items-center gap-sm hover:opacity-90 transition-opacity shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            Nueva Venta
+        </button>
+    </div>
+
+    <!-- Filtros de Búsqueda y Tabla -->
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm flex flex-col">
+        
+        <!-- Barra de Herramientas / Filtros -->
+        <div class="p-md border-b border-outline-variant">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-md items-end">
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">DNI Cliente</label>
+                    <input type="text" placeholder="DNI" class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md">
+                </div>
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Teléfono</label>
+                    <input type="tel" placeholder="Teléfono" class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md">
+                </div>
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Número de Serie</label>
+                    <input type="text" placeholder="N° Serie" class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md">
+                </div>
+                <div class="flex items-center justify-end h-8">
+                    <button class="flex items-center gap-xs text-primary hover:text-primary-container transition-colors font-label-md text-label-md">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">restart_alt</span>
+                        Restablecer Filtros
+                    </button>
+                </div>
+                <div class="md:col-span-2 flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Fecha de Venta</label>
+                    <div class="flex items-center gap-sm">
+                        <input type="date" class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md">
+                        <span class="text-on-surface-variant font-body-md">a</span>
+                        <input type="date" class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-xs md:col-span-1">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Vendedor</label>
+                    <input type="text" placeholder="Vendedor" class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md">
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Datos -->
+        <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+                <thead>
+                    <tr class="bg-surface-container-low font-label-md text-label-md text-on-surface">
+                        <th class="p-sm pl-md border-b border-outline-variant">N° SERIE</th>
+                        <th class="p-sm border-b border-outline-variant">CLIENTE</th>
+                        <th class="p-sm border-b border-outline-variant">VENDEDOR</th>
+                        <th class="p-sm border-b border-outline-variant">FECHA DE VENTA</th>
+                        <th class="p-sm border-b border-outline-variant">TELÉFONO</th>
+                        <th class="p-sm border-b border-outline-variant">DNI CLIENTE</th>
+                        <th class="p-sm border-b border-outline-variant text-right">PRECIO DE VENTA</th>
+                        <th class="p-sm border-b border-outline-variant">MONEDA</th>
+                        <th class="p-sm border-b border-outline-variant">OBSERVACIONES</th>
+                        <th class="p-sm pr-md border-b border-outline-variant text-center">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody class="font-body-md text-body-md text-on-surface">
+                    <tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-12">
+                        <td class="p-sm pl-md text-primary hover:underline cursor-pointer">SN-9921</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Global Dynamics</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Carlos Ruiz</td>
+                        <td class="p-sm text-on-surface-variant">2024-06-15</td>
+                        <td class="p-sm text-on-surface-variant">+56 9 8765 4321</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">12.345.678-9</td>
+                        <td class="p-sm text-right">14,400.00</td>
+                        <td class="p-sm">USD</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Entrega prioritaria</td>
+                        <td class="p-sm pr-md text-center">
+                            <div class="flex justify-center gap-sm">
+                                <button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-primary transition-colors">edit</button>
+                                <button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-error transition-colors">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-12">
+                        <td class="p-sm pl-md text-primary hover:underline cursor-pointer">SN-8842</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Aether Tech</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Ana Belén</td>
+                        <td class="p-sm text-on-surface-variant">2024-06-14</td>
+                        <td class="p-sm text-on-surface-variant">+1 415-555-0100</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">76.432.110-K</td>
+                        <td class="p-sm text-right">8,100.00</td>
+                        <td class="p-sm">USD</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Sin observaciones</td>
+                        <td class="p-sm pr-md text-center">
+                            <div class="flex justify-center gap-sm">
+                                <button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-primary transition-colors">edit</button>
+                                <button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-error transition-colors">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-12">
+                        <td class="p-sm pl-md text-primary hover:underline cursor-pointer">SN-7731</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Persa Mendoza Electrónica</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Diego</td>
+                        <td class="p-sm text-on-surface-variant">2024-06-13</td>
+                        <td class="p-sm text-on-surface-variant">+54 9 261 555 1234</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">29.123.456</td>
+                        <td class="p-sm text-right">5,500.00</td>
+                        <td class="p-sm">USD</td>
+                        <td class="p-sm text-primary hover:underline cursor-pointer">Retira en sucursal</td>
+                        <td class="p-sm pr-md text-center">
+                            <div class="flex justify-center gap-sm">
+                                <button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-primary transition-colors">edit</button>
+                                <button class="material-symbols-outlined text-[18px] text-on-surface-variant hover:text-error transition-colors">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Paginación de Tabla -->
+        <div class="p-sm border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-body-md text-on-surface-variant rounded-b-lg">
+            <span>Mostrando 1-3 de 124 resultados</span>
+            <div class="flex gap-xs items-center">
+                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high text-on-surface-variant disabled:opacity-50" disabled>
+                    <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                </button>
+                <button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-label-md text-label-md">1</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high font-label-md text-label-md">2</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high font-label-md text-label-md">3</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high text-on-surface-variant">
+                    <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

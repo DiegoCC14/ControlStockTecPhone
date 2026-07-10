@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block title %}Clientes - TechPhone{% endblock %}
+
+{% block nav_clientes %}bg-secondary-container text-on-secondary-container border-l-4 border-primary icon-fill{% endblock %}
+
+{% block content %}
+<div class="max-w-[container-max] mx-auto">
+    <div class="flex items-center justify-between mb-xl">
+        <div>
+            <h1 class="font-display text-display text-on-surface mb-sm">Clientes</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">Administre e inscriba nuevos clientes corporativos en la base de datos centralizada.</p>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-12 gap-lg">
+        
+        <!-- Formulario de Creacion -->
+        <section class="col-span-12 lg:col-span-4 space-y-lg">
+            <div class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg shadow-sm">
+                <div class="flex items-center gap-sm pb-md border-b border-outline-variant mb-md">
+                    <span class="material-symbols-outlined text-primary">person_add</span>
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Nueva Inscripcion</h3>
+                </div>
+                <!-- Action Crear -->
+                <form class="space-y-md" method="POST" action="{% url 'clientes' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="accion" value="crear">
+                    
+                    <div class="grid grid-cols-2 gap-sm">
+                        <div>
+                            <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">NOMBRE</label>
+                            <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="nombre" placeholder="ej. Alexander" required="" type="text">
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">APELLIDO</label>
+                            <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="apellido" placeholder="ej. Pierce" required="" type="text">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-sm">
+                        <div>
+                            <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">DNI</label>
+                            <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="dni" placeholder="12345678" required="" type="number">
+                        </div>
+                        <div>
+                            <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">TELEFONO</label>
+                            <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="telefono" placeholder="+1 555-0199" required="" type="tel">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">CORREO ELECTRONICO (OPCIONAL)</label>
+                        <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="email" placeholder="a.pierce@enterprise.com" type="email">
+                    </div>
+                    <button class="w-full py-sm bg-primary text-on-primary font-label-md text-label-md rounded-lg mt-md active:opacity-90 transition-opacity flex justify-center items-center gap-sm" type="submit">
+                        <span class="material-symbols-outlined text-[18px]">add</span>Agregar al Registro
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Tabla de Clientes -->
+        <section class="col-span-12 lg:col-span-8">
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm overflow-hidden flex flex-col h-[calc(100vh-220px)]">
+                <div class="flex items-center justify-between p-md border-b border-outline-variant">
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Clientes Registrados</h3>
+                </div>
+                
+                <!-- Buscador GET -->
+                <form method="GET" action="{% url 'clientes' %}" class="p-md bg-surface-container-low border-b border-outline-variant grid gap-sm grid-cols-4">
+                    <div class="flex flex-col gap-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant">Filtrar por Nombre</label>
+                        <input type="text" name="nombre" value="{{ filtro_nombre }}" placeholder="Buscar nombre..." class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md">
+                    </div>
+                    <div class="flex flex-col gap-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant">Filtrar por DNI</label>
+                        <input type="text" name="dni" value="{{ filtro_dni }}" placeholder="Buscar DNI..." class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md">
+                    </div>
+                    <div class="flex flex-col gap-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant">Filtrar por Telefono</label>
+                        <input type="text" name="telefono" value="{{ filtro_telefono }}" placeholder="Buscar telefono..." class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md">
+                    </div>
+                    <div class="flex items-end gap-md h-full pt-lg">
+                        <button type="submit" class="bg-primary text-on-primary font-label-md text-label-md px-sm py-1 h-8 rounded hover:opacity-90 transition-opacity">Buscar</button>
+                        <a href="{% url 'clientes' %}" class="text-primary font-label-md text-label-md hover:underline flex items-center gap-xs h-8">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">restart_alt</span>Limpiar
+                        </a>
+                    </div>
+                </form>
+
+                <div class="overflow-auto custom-scrollbar flex-1">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-surface-container-low sticky top-0 z-10">
+                            <tr>
+                                <th class="p-sm pl-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">NOMBRE</th>
+                                <th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">APELLIDO</th>
+                                <th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">DNI</th>
+                                <th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">TELEFONO</th>
+                                <th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">CORREO ELECTRONICO</th>
+                                <th class="p-sm pr-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant text-right">ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-body-md text-body-md text-on-surface">
+                            {% for cliente in clientes %}
+                            <tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-10">
+                                <td class="p-sm pl-md font-semibold">{{ cliente.nombre }}</td>
+                                <td class="p-sm">{{ cliente.apellido }}</td>
+                                <td class="p-sm text-on-surface-variant">{{ cliente.dni }}</td>
+                                <td class="p-sm text-on-surface-variant">{{ cliente.telefono }}</td>
+                                <td class="p-sm text-primary">{{ cliente.email }}</td>
+                                <td class="p-sm pr-md text-right">
+                                    <button class="material-symbols-outlined hover:text-primary transition-colors text-[18px] text-primary" 
+                                            onclick="openEditModal('{{ cliente.dni }}', '{{ cliente.nombre|escapejs }}', '{{ cliente.apellido|escapejs }}', '{{ cliente.telefono|escapejs }}', '{{ cliente.email|escapejs }}')" type="button">edit</button>
+                                    
+                                    <button class="material-symbols-outlined hover:text-error ml-sm transition-colors text-[18px] text-error" 
+                                            onclick="openDeleteModal('{{ cliente.dni }}')" type="button">delete</button>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr class="h-10">
+                                <td colspan="6" class="p-sm pl-md text-on-surface-variant text-center opacity-70">No se encontraron clientes.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Modal de Eliminacion (Action Eliminar) -->
+<div class="fixed inset-0 bg-[#00000080] z-[100] hidden flex items-center justify-center p-md" id="deleteModal">
+    <div class="bg-surface-container-lowest rounded-xl max-w-sm w-full p-lg shadow-lg">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Confirmar Eliminacion</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-lg">¿Esta seguro de que desea eliminar este cliente? Esta accion es permanente y no se puede deshacer.</p>
+        
+        <form method="POST" action="{% url 'clientes' %}">
+            {% csrf_token %}
+            <input type="hidden" name="accion" value="eliminar">
+            <input type="hidden" name="dni" id="delete_dni_input">
+            
+            <div class="flex justify-end gap-sm">
+                <button type="button" class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="closeDeleteModal()">Cancelar</button>
+                <button type="submit" class="px-md py-sm rounded-lg font-label-md text-label-md bg-error text-on-error hover:opacity-90 transition-opacity">Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal de Edicion (Action Editar) -->
+<div class="fixed inset-0 bg-[#00000080] z-[100] hidden flex items-center justify-center p-md" id="editModal">
+    <div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-lg shadow-lg max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between mb-md pb-sm border-b border-outline-variant">
+            <h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+                <span class="material-symbols-outlined text-primary">edit</span>Editar Cliente
+            </h3>
+            <button type="button" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface" onclick="closeEditModal()">close</button>
+        </div>
+        
+        <form class="space-y-md" method="POST" action="{% url 'clientes' %}">
+            {% csrf_token %}
+            <input type="hidden" name="accion" value="editar">
+            <input type="hidden" name="dni" id="edit_dni_hidden">
+            
+            <div class="grid grid-cols-2 gap-sm">
+                <div>
+                    <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">NOMBRE</label>
+                    <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary text-body-md" name="nombre" id="edit_nombre" required type="text">
+                </div>
+                <div>
+                    <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">APELLIDO</label>
+                    <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary text-body-md" name="apellido" id="edit_apellido" required type="text">
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-sm">
+                <div>
+                    <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">DNI (No modificable)</label>
+                    <input class="w-full h-8 px-sm bg-surface-container-low border border-outline-variant rounded text-on-surface-variant text-body-md" id="edit_dni_display" disabled type="text">
+                </div>
+                <div>
+                    <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">TELEFONO</label>
+                    <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary text-body-md" name="telefono" id="edit_telefono" required type="tel">
+                </div>
+            </div>
+            
+            <div>
+                <label class="block font-label-md text-label-md text-on-surface-variant mb-xs">CORREO ELECTRONICO</label>
+                <input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary text-body-md" name="email" id="edit_email" type="email">
+            </div>
+            
+            <div class="flex justify-end gap-sm pt-sm border-t border-outline-variant mt-md pt-md">
+                <button class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="closeEditModal()" type="button">Cancelar</button>
+                <button class="px-md py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:opacity-90 transition-opacity" type="submit">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openDeleteModal(dni) {
+        document.getElementById('delete_dni_input').value = dni;
+        document.getElementById('deleteModal').classList.remove('hidden');
+    }
+    
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').classList.add('hidden');
+    }
+    
+    function openEditModal(dni, nombre, apellido, telefono, email) {
+        document.getElementById('edit_dni_hidden').value = dni;
+        document.getElementById('edit_dni_display').value = dni;
+        document.getElementById('edit_nombre').value = nombre;
+        document.getElementById('edit_apellido').value = apellido;
+        document.getElementById('edit_telefono').value = telefono;
+        document.getElementById('edit_email').value = email;
+        
+        document.getElementById('editModal').classList.remove('hidden');
+    }
+    
+    function closeEditModal() {
+        document.getElementById('editModal').classList.add('hidden');
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,299 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>Entrada de Dispositivos - EnterpriseCore</title><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                "surface-container-low": "#f3f4f5",
+                "on-error-container": "#93000a",
+                "surface-dim": "#d9dadb",
+                "secondary": "#49607d",
+                "tertiary-container": "#67778b",
+                "secondary-container": "#c4dcfe",
+                "tertiary": "#4e5e71",
+                "on-primary-container": "#fffeff",
+                "on-primary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "inverse-surface": "#2e3132",
+                "surface-bright": "#f8f9fa",
+                "on-secondary-container": "#4a617e",
+                "surface-container-high": "#e7e8e9",
+                "on-tertiary-container": "#fffeff",
+                "on-surface-variant": "#414754",
+                "surface-variant": "#e1e3e4",
+                "tertiary-fixed": "#d3e4fb",
+                "error-container": "#ffdad6",
+                "surface-container-highest": "#e1e3e4",
+                "on-tertiary-fixed": "#0c1d2d",
+                "outline-variant": "#c1c6d7",
+                "on-tertiary-fixed-variant": "#38485a",
+                "primary": "#0058c2",
+                "on-secondary-fixed-variant": "#324864",
+                "on-secondary-fixed": "#021c36",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#aec6ff",
+                "on-secondary": "#ffffff",
+                "on-error": "#ffffff",
+                "background": "#f8f9fa",
+                "outline": "#727786",
+                "inverse-on-surface": "#f0f1f2",
+                "surface-tint": "#005ac4",
+                "primary-fixed": "#d8e2ff",
+                "on-primary-fixed": "#001a42",
+                "tertiary-fixed-dim": "#b7c8de",
+                "on-primary-fixed-variant": "#004396",
+                "secondary-fixed-dim": "#b1c8ea",
+                "surface-container": "#edeeef",
+                "on-background": "#191c1d",
+                "surface": "#f8f9fa",
+                "primary-container": "#0070f2",
+                "surface-container-lowest": "#ffffff",
+                "inverse-primary": "#aec6ff",
+                "secondary-fixed": "#d2e4ff",
+                "on-surface": "#191c1d"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "gutter": "1rem",
+                "xs": "4px",
+                "lg": "24px",
+                "base": "4px",
+                "md": "16px",
+                "container-max": "1440px",
+                "sm": "8px",
+                "xl": "32px"
+        },
+        "fontFamily": {
+                "headline-md": [
+                        "Hanken Grotesk"
+                ],
+                "display": [
+                        "Hanken Grotesk"
+                ],
+                "body-lg": [
+                        "Hanken Grotesk"
+                ],
+                "headline-lg": [
+                        "Hanken Grotesk"
+                ],
+                "body-md": [
+                        "Hanken Grotesk"
+                ],
+                "label-md": [
+                        "Hanken Grotesk"
+                ],
+                "caption": [
+                        "Hanken Grotesk"
+                ]
+        },
+        "fontSize": {
+                "headline-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-md": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "caption": [
+                        "11px",
+                        {
+                                "lineHeight": "14px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+                },
+            },
+        }
+    }catch(_e){}</script><style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style></head><body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-on-tertiary-fixed h-16 w-full flex items-center shadow-sm border-b border-outline-variant fixed top-0 left-0 z-50 justify-between px-md max-w-full">
+<div class="flex items-center gap-sm">
+<span class="font-headline-lg text-headline-lg font-bold text-on-primary-fixed">EnterpriseCore</span>
+</div>
+<div class="flex items-center gap-md">
+<!-- No search, no icons as requested -->
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional corporate headshot of a business executive used as a user profile avatar. The photo features a neutral background, even studio lighting, and high-quality details suitable for an enterprise dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1ld-aASKAWHsozob57R8d3EY4iUaszK7CJP5KyoCsPDn0LV0oE2NTkxHylv_OZSPh7lNDbdkXOQ7Z2ueY7idnps09scb3QgyBE9u404_mwlfnxtplSKjipCqJh9f89_munkdZLeu1u6XJr-y1XXuDQIrjb8rHG_xDjZBWi9-kLu3b4Kal3XHJTEwkEuM-FFlaTeodpomXn7lp6TVEUwZhFGrUyNjqM7S8kMvgFallKqes2qFVTV6kYg">
+</div>
+</header>
+<div class="flex pt-16 h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-md overflow-y-auto bg-surface-container-low w-60 fixed left-0 top-16 border-r border-outline-variant transition-all duration-150 ease-in-out z-40">
+<div class="px-md mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">TechPhone</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">V2.4.0</p>
+</div>
+<ul class="flex-1 space-y-xs">
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Panel de Control</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Ventas</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm bg-secondary-container text-on-secondary-container border-l-4 border-primary transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined icon-fill">devices</span>
+<span class="font-label-md text-label-md">Stock</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">person_add</span>
+<span class="font-label-md text-label-md">Entrada de Clientes</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">bookmark_add</span>
+<span class="font-label-md text-label-md">Reserva de Dispositivos</span>
+</a>
+</li>
+</ul>
+
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-60 p-md md:p-lg overflow-y-auto w-full">
+<div class="max-w-[1440px] mx-auto">
+<!-- Page Header / Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg">
+<div>
+<h1 class="font-display text-display text-on-surface">Stock Dispositivos</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Gestión y listado de todos los dispositivos en el inventario central.</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded flex items-center gap-sm active:opacity-80 transition-opacity shadow-sm whitespace-nowrap">
+<span class="material-symbols-outlined" data-icon="add" style="font-size: 18px;">add</span>
+                    Nuevo Dispositivo
+                </button>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm p-md mb-md">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md items-end">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Número de Serie</label>
+<input class="bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="Ej: S/N: 7A-9012" type="text">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Modelo</label>
+<input class="bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="Ej: Precision Serie 7000" type="text">
+</div>
+<div class="flex flex-col gap-xs md:col-span-1">
+<label class="font-label-md text-label-md text-on-surface-variant">Vendedor</label>
+<input class="bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" placeholder="Nombre del vendedor" type="text">
+</div>
+<div class="flex items-center justify-end">
+<button class="flex items-center gap-xs text-primary hover:text-primary-container transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-size: 18px;">restart_alt</span>
+                Restablecer Filtros
+            </button>
+</div>
+<div class="md:col-span-2 flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Fecha de Ingreso</label>
+<div class="flex items-center gap-sm">
+<input class="flex-1 bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" type="date">
+<span class="text-on-surface-variant font-body-md">a</span>
+<input class="flex-1 bg-surface-container-low border border-outline-variant rounded px-sm py-sm font-body-md text-body-md focus:outline-none focus:border-primary" type="date">
+</div>
+</div>
+</div>
+</div><div class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant"><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider">NUMERO SERIE</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider">MODELO</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider">COLOR</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider">ESTADO</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider">MONEDA</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider text-right">PRECIO COMPRA</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider">PROVEEDOR</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider">OBSERVACION</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider text-center">HISTORIAL</th><th class="px-md py-sm font-label-md text-label-md text-on-surface uppercase tracking-wider text-center">ACCIONES</th></tr>
+</thead>
+<tbody class="divide-y divide-outline-variant"><tr class="hover:bg-surface-container transition-colors group cursor-pointer"><td class="px-md py-sm font-body-md text-body-md text-primary hover:underline">S/N: 7A-9012-3456</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">Precision Serie 7000</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">Gris Espacial</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">Disponible</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">USD</td><td class="px-md py-sm font-body-md text-body-md text-on-surface text-right">$2,100.00</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">Dell Enterprise</td><td class="px-md py-sm font-body-md text-body-md text-on-surface-variant">Sin detalles</td><td class="px-md py-sm text-center"><button class="text-primary hover:underline font-label-md text-label-md js-history-btn">Historial</button></td><td class="px-md py-sm text-center flex items-center justify-center gap-sm"><button class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button><button class="material-symbols-outlined hover:text-error transition-colors ml-sm text-error" style="font-size: 18px;">delete</button></td></tr><tr class="hover:bg-surface-container transition-colors group cursor-pointer"><td class="px-md py-sm font-body-md text-body-md text-primary hover:underline">S/N: PF-1234-ABCD</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">ThinkPad T14 Gen 3</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">Negro Mate</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">En Reparación</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">USD</td><td class="px-md py-sm font-body-md text-body-md text-on-surface text-right">$1,150.00</td><td class="px-md py-sm font-body-md text-body-md text-on-surface">Lenovo Latam</td><td class="px-md py-sm font-body-md text-body-md text-on-surface-variant">Cambio de pantalla</td><td class="px-md py-sm text-center"><button class="text-primary hover:underline font-label-md text-label-md js-history-btn">Historial</button></td><td class="px-md py-sm text-center flex items-center justify-center gap-sm"><button class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button><button class="material-symbols-outlined hover:text-error transition-colors ml-sm text-error" style="font-size: 18px;">delete</button></td></tr></tbody>
+</table>
+</div>
+<!-- Pagination / Table Footer -->
+<div class="px-md py-sm bg-surface-container-low flex items-center justify-between border-t border-outline-variant">
+<div class="font-body-md text-body-md text-on-surface-variant">
+                        Mostrando 1-5 de 24 resultados
+                    </div>
+<div class="flex items-center gap-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high text-on-surface-variant disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" style="font-size: 18px;">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-label-md text-label-md">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high font-label-md text-label-md">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high font-label-md text-label-md">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Micro-interaction script -->
+<script class="">
+        document.querySelectorAll('button:has([data-icon="add"])').forEach(btn => {
+            btn.addEventListener('click', () => {
+                alert('Abriendo modal de Nuevo Dispositivo...');
+            });
+        });
+</script>
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm" id="history-modal"><div class="bg-surface-container-lowest w-full max-w-md rounded-xl shadow-xl overflow-hidden border border-outline-variant"><div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low"><h3 class="font-headline-md text-headline-md">Historial de Movimientos</h3><button class="material-symbols-outlined hover:bg-surface-variant rounded-full p-1" id="close-modal">close</button></div><div class="p-lg space-y-md"><div class="flex gap-md"><div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-primary"></div><div class="w-0.5 h-full bg-outline-variant"></div></div><div><p class="font-label-md text-primary">15 Oct 2023</p><p class="font-body-md font-bold">Ingreso a Inventario</p><p class="text-sm text-on-surface-variant">Sede Central - Recepción</p></div></div><div class="flex gap-md"><div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-outline"></div><div class="w-0.5 h-full bg-outline-variant"></div></div><div><p class="font-label-md text-on-surface-variant">20 Oct 2023</p><p class="font-body-md font-bold">Asignado a Técnico</p><p class="text-sm text-on-surface-variant">Mantenimiento Preventivo</p></div></div><div class="flex gap-md"><div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-outline"></div></div><div><p class="font-label-md text-on-surface-variant">Hoy</p><p class="font-body-md font-bold">Disponible para Venta</p><p class="text-sm text-on-surface-variant">Showroom Principal</p></div></div></div></div></div><script>const modal = document.getElementById('history-modal');const closeBtn = document.getElementById('close-modal');document.querySelectorAll('.js-history-btn').forEach(btn => {btn.addEventListener('click', (e) => {e.stopPropagation();modal.classList.remove('hidden');});});closeBtn.addEventListener('click', () => {modal.classList.add('hidden');});modal.addEventListener('click', (e) => {if (e.target === modal) modal.classList.add('hidden');});</script>
+
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html><html class="light" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+try{
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "surface-container-low": "#f3f4f5",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d9dadb",
+                    "secondary": "#49607d",
+                    "tertiary-container": "#67778b",
+                    "secondary-container": "#c4dcfe",
+                    "tertiary": "#4e5e71",
+                    "on-primary-container": "#fffeff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "surface-bright": "#f8f9fa",
+                    "on-secondary-container": "#4a617e",
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary-container": "#fffeff",
+                    "on-surface-variant": "#414754",
+                    "surface-variant": "#e1e3e4",
+                    "tertiary-fixed": "#d3e4fb",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-tertiary-fixed": "#0c1d2d",
+                    "outline-variant": "#c1c6d7",
+                    "on-tertiary-fixed-variant": "#38485a",
+                    "primary": "#0058c2",
+                    "on-secondary-fixed-variant": "#324864",
+                    "on-secondary-fixed": "#021c36",
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#aec6ff",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "background": "#f8f9fa",
+                    "outline": "#727786",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-tint": "#005ac4",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary-fixed": "#001a42",
+                    "tertiary-fixed-dim": "#b7c8de",
+                    "on-primary-fixed-variant": "#004396",
+                    "secondary-fixed-dim": "#b1c8ea",
+                    "surface-container": "#edeeef",
+                    "on-background": "#191c1d",
+                    "surface": "#f8f9fa",
+                    "primary-container": "#0070f2",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#aec6ff",
+                    "secondary-fixed": "#d2e4ff",
+                    "on-surface": "#191c1d"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+                },
+                "spacing": {
+                    "gutter": "1rem",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "base": "4px",
+                    "md": "16px",
+                    "container-max": "1440px",
+                    "sm": "8px",
+                    "xl": "32px"
+                },
+                "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "display": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-md": ["Hanken Grotesk"],
+                    "caption": ["Hanken Grotesk"]
+                },
+                "fontSize": {
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "caption": ["11px", {"lineHeight": "14px", "fontWeight": "400"}]
+                }
+            }
+        }
+    }
+}catch(_e){}
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .icon-fill {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-on-tertiary-fixed h-16 w-full flex items-center shadow-sm border-b border-outline-variant fixed top-0 left-0 z-50 justify-between px-md max-w-full">
+<div class="flex items-center gap-sm">
+<span class="font-headline-lg text-headline-lg font-bold text-on-primary-fixed">EnterpriseCore</span>
+</div>
+<div class="flex items-center gap-md">
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional corporate headshot of a business executive used as a user profile avatar. The photo features a neutral background, even studio lighting, and high-quality details suitable for an enterprise dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1ld-aASKAWHsozob57R8d3EY4iUaszK7CJP5KyoCsPDn0LV0oE2NTkxHylv_OZSPh7lNDbdkXOQ7Z2ueY7idnps09scb3QgyBE9u404_mwlfnxtplSKjipCqJh9f89_munkdZLeu1u6XJr-y1XXuDQIrjb8rHG_xDjZBWi9-kLu3b4Kal3XHJTEwkEuM-FFlaTeodpomXn7lp6TVEUwZhFGrUyNjqM7S8kMvgFallKqes2qFVTV6kYg">
+</div>
+</header>
+<div class="flex pt-16 h-screen">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-md overflow-y-auto bg-surface-container-low w-60 fixed left-0 top-16 border-r border-outline-variant transition-all duration-150 ease-in-out z-40">
+<div class="px-md mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">TechPhone</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">V2.4.0</p>
+</div>
+<ul class="flex-1 space-y-xs">
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Panel de Control</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Ventas</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">devices</span>
+<span class="font-label-md text-label-md">Stock</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm bg-secondary-container text-on-secondary-container border-l-4 border-primary transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined icon-fill">person_add</span>
+<span class="font-label-md text-label-md">Entrada de Clientes</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">bookmark_add</span>
+<span class="font-label-md text-label-md">Reserva de Dispositivos</span>
+</a>
+</li>
+</ul>
+
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-60 p-md md:p-lg overflow-y-auto">
+<div class="max-w-[container-max] mx-auto">
+<div class="flex items-center justify-between mb-xl">
+<div>
+<h1 class="font-display text-display text-on-surface mb-sm">Clientes</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Administre e inscriba nuevos clientes corporativos en la base de datos centralizada.</p>
+</div>
+</div>
+<!-- Dashboard Grid Layout -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Registration Form Column -->
+<section class="col-span-12 lg:col-span-4 space-y-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-lg shadow-sm">
+<div class="flex items-center gap-sm pb-md border-b border-outline-variant mb-md">
+<span class="material-symbols-outlined text-primary">person_add</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Nueva Inscripción</h3>
+</div>
+<form class="space-y-md" id="customerForm"><div class="grid grid-cols-2 gap-sm"><div><label class="block font-label-md text-label-md text-on-surface-variant mb-xs">NOMBRE</label><input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="firstName" placeholder="ej. Alexander" required="" type="text"></div><div><label class="block font-label-md text-label-md text-on-surface-variant mb-xs">APELLIDO</label><input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="lastName" placeholder="ej. Pierce" required="" type="text"></div></div><div class="grid grid-cols-2 gap-sm"><div><label class="block font-label-md text-label-md text-on-surface-variant mb-xs">DNI</label><input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="taxId" placeholder="12.345.678-9" required="" type="text"></div><div><label class="block font-label-md text-label-md text-on-surface-variant mb-xs">TELÉFONO</label><input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="phone" placeholder="+1 555-0199" required="" type="tel"></div></div><div><label class="block font-label-md text-label-md text-on-surface-variant mb-xs">CORREO ELECTRÓNICO (OPCIONAL)</label><input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="email" placeholder="a.pierce@enterprise.com" type="email"></div><button class="w-full py-sm bg-primary text-on-primary font-label-md text-label-md rounded-lg mt-md active:opacity-90 transition-opacity flex justify-center items-center gap-sm" type="submit"><span class="material-symbols-outlined text-[18px]">add</span>Agregar al Registro</button></form>
+</div>
+</section>
+<!-- Customer List Table Column -->
+<section class="col-span-12 lg:col-span-8">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm overflow-hidden flex flex-col h-[calc(100vh-220px)]">
+<div class="flex items-center justify-between p-md border-b border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface">Clientes Registrados</h3>
+<div class="flex items-center gap-sm">
+<span class="text-caption font-caption text-on-surface-variant">Mostrando 1-10 de 1,284</span>
+<div class="flex border border-outline-variant rounded overflow-hidden">
+<button class="p-xs hover:bg-surface-container-high"><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<button class="p-xs hover:bg-surface-container-high border-l border-outline-variant"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div><div class="p-md bg-surface-container-low border-b border-outline-variant grid gap-sm grid-cols-4"><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface-variant">Filtrar por Nombre</label><input type="text" placeholder="Buscar nombre..." class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md"></div><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface-variant">Filtrar por DNI</label><input type="text" placeholder="Buscar DNI..." class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md"></div><div class="flex flex-col gap-xs"><label class="font-label-md text-label-md text-on-surface-variant">Filtrar por Teléfono</label><input type="text" placeholder="Buscar teléfono..." class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md"></div><div class="flex items-end h-full pt-lg"><button class="text-primary font-label-md text-label-md hover:underline flex items-center gap-xs" onclick="this.closest('.grid').querySelectorAll('input').forEach(i =&gt; i.value = '')"><span class="material-symbols-outlined" style="font-size: 16px;">restart_alt</span>Restablecer Filtros</button></div></div>
+<div class="overflow-auto custom-scrollbar flex-1">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low sticky top-0 z-10"><tr><th class="p-sm pl-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">NOMBRE</th><th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">APELLIDO</th><th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">DNI</th><th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">TELÉFONO</th><th class="p-sm font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">CORREO ELECTRÓNICO</th><th class="p-sm pr-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant text-right">ACCIONES</th></tr></thead>
+<tbody class="font-body-md text-body-md text-on-surface" id="customerTableBody"><tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-10"><td class="p-sm pl-md font-semibold">Acme</td><td class="p-sm">Corporation</td><td class="p-sm text-on-surface-variant">76.432.110-K</td><td class="p-sm text-on-surface-variant">+1 415-555-0100</td><td class="p-sm text-primary">contact@acme.com</td><td class="p-sm pr-md text-right"><button class="material-symbols-outlined hover:text-primary transition-colors text-[18px] text-primary" onclick="openEditModal()">edit</button><button class="material-symbols-outlined hover:text-error ml-sm transition-colors text-[18px] text-error" onclick="openDeleteModal()">delete</button></td></tr><tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-10"><td class="p-sm pl-md font-semibold">Global</td><td class="p-sm">Logistics</td><td class="p-sm text-on-surface-variant">15.892.443-4</td><td class="p-sm text-on-surface-variant">+1 212-555-9821</td><td class="p-sm text-primary">billing@globallog.io</td><td class="p-sm pr-md text-right"><button class="material-symbols-outlined hover:text-primary transition-colors text-[18px] text-primary" onclick="openEditModal()">edit</button><button class="material-symbols-outlined hover:text-error ml-sm transition-colors text-[18px] text-error" onclick="openDeleteModal()">delete</button></td></tr></tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="fixed inset-0 bg-[#00000080] z-[100] hidden flex items-center justify-center p-md" id="deleteModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-sm w-full p-lg shadow-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Confirmar Eliminación</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">¿Está seguro de que desea eliminar este cliente? Esta acción es permanente y no se puede deshacer.</p>
+<div class="flex justify-end gap-sm">
+<button class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="closeDeleteModal()">Cancelar</button>
+<button class="px-md py-sm rounded-lg font-label-md text-label-md bg-error text-on-error hover:opacity-90 transition-opacity" onclick="closeDeleteModal()">Eliminar</button>
+</div>
+</div>
+</div>
+<!-- Edit Customer Modal -->
+<div class="fixed inset-0 bg-[#00000080] z-[100] hidden flex items-center justify-center p-md" id="editModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-lg shadow-lg max-h-[90vh] overflow-y-auto">
+<div class="flex items-center justify-between mb-md pb-sm border-b border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">edit</span>
+                Editar Cliente
+            </h3>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface" onclick="closeEditModal()">close</button>
+</div>
+<form class="space-y-md" onsubmit="event.preventDefault(); closeEditModal();">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">NOMBRE COMPLETO</label>
+<input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="editFullName" required="" type="text" value="Acme Corporation Ltd.">
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">ID TRIBUTARIO (RUT/DNI)</label>
+<input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="editTaxId" required="" type="text" value="76.432.110-K">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">TELÉFONO</label>
+<input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="editPhone" required="" type="tel" value="+1 415-555-0100">
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">CORREO ELECTRÓNICO</label>
+<input class="w-full h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md" name="editEmail" required="" type="email" value="contact@acme.com">
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">DIRECCIÓN FÍSICA</label>
+<textarea class="w-full p-sm bg-surface-container-lowest border border-outline-variant rounded focus:ring-2 focus:ring-primary focus:border-primary text-body-md resize-none" name="editAddress" required="" rows="3">Av. Industrial 123, Oficina 400</textarea>
+</div>
+<div class="flex justify-end gap-sm pt-sm">
+<button class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="closeEditModal()" type="button">Cancelar</button>
+<button class="px-md py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:opacity-90 transition-opacity" type="submit">Guardar Cambios</button>
+</div>
+</form>
+</div>
+</div>
+<script>
+    document.getElementById('customerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const tableBody = document.getElementById('customerTableBody');
+        
+        const newRow = document.createElement('tr');
+        newRow.className = 'border-b border-surface-variant hover:bg-surface-container-low transition-colors h-10 animate-pulse';
+        
+        newRow.innerHTML = `
+            <td class="p-sm pl-md font-semibold">${formData.get('fullName')}</td>
+            <td class="p-sm text-on-surface-variant">${formData.get('taxId')}</td>
+            <td class="p-sm text-primary underline">${formData.get('email')}</td>
+            <td class="p-sm text-on-surface-variant">${formData.get('phone')}</td>
+            <td class="p-sm pr-md text-right">
+                <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-[18px]" onclick="openEditModal()">edit</button>
+                <button class="material-symbols-outlined text-on-surface-variant hover:text-error ml-sm transition-colors text-[18px]" onclick="openDeleteModal()">delete</button>
+            </td>
+        `;
+        
+        tableBody.insertBefore(newRow, tableBody.firstChild);
+        this.reset();
+        
+        setTimeout(() => {
+            newRow.classList.remove('animate-pulse');
+        }, 2000);
+    });
+
+    // Modal Functions
+    function openDeleteModal() {
+        document.getElementById('deleteModal').classList.remove('hidden');
+    }
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').classList.add('hidden');
+    }
+    function openEditModal() {
+        document.getElementById('editModal').classList.remove('hidden');
+    }
+    function closeEditModal() {
+        document.getElementById('editModal').classList.add('hidden');
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

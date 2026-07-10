@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block title %}Stock - TecPhone{% endblock %}
+
+{% block nav_stock %}bg-secondary-container text-on-secondary-container border-l-4 border-primary icon-fill{% endblock %}
+
+{% block content %}
+<div class="max-w-[1440px] mx-auto space-y-md">
+    <!-- Page Header / Actions -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg">
+        <div>
+            <h1 class="font-display text-display text-on-surface">Stock Dispositivos</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant">Gestión y listado de todos los dispositivos en el inventario central.</p>
+        </div>
+        <button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded flex items-center gap-sm active:opacity-80 transition-opacity shadow-sm whitespace-nowrap">
+            <span class="material-symbols-outlined" data-icon="add" style="font-size: 18px;">add</span>
+            Nuevo Dispositivo
+        </button>
+    </div>
+
+    <!-- Table Section -->
+    <div class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm flex flex-col">
+        <!-- Filters -->
+        <div class="p-md border-b border-outline-variant">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-md items-end">
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Número de Serie</label>
+                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="Ej: S/N: 7A-9012" type="text">
+                </div>
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Modelo</label>
+                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="Ej: Precision Serie 7000" type="text">
+                </div>
+                <div class="flex flex-col gap-xs md:col-span-1">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Vendedor</label>
+                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="Nombre del vendedor" type="text">
+                </div>
+                <div class="flex items-center justify-end h-8">
+                    <button class="flex items-center gap-xs text-primary hover:text-primary-container transition-colors font-label-md text-label-md">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">restart_alt</span>
+                        Restablecer Filtros
+                    </button>
+                </div>
+                <div class="md:col-span-2 flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Fecha de Ingreso</label>
+                    <div class="flex items-center gap-sm">
+                        <input class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" type="date">
+                        <span class="text-on-surface-variant font-body-md">a</span>
+                        <input class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" type="date">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Data Table -->
+        <div class="overflow-x-auto custom-scrollbar">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+                <thead>
+                    <tr class="bg-surface-container-low font-label-md text-label-md text-on-surface uppercase tracking-wider">
+                        <th class="p-sm pl-md border-b border-outline-variant">NUMERO SERIE</th>
+                        <th class="p-sm border-b border-outline-variant">MODELO</th>
+                        <th class="p-sm border-b border-outline-variant">COLOR</th>
+                        <th class="p-sm border-b border-outline-variant">ESTADO</th>
+                        <th class="p-sm border-b border-outline-variant">MONEDA</th>
+                        <th class="p-sm border-b border-outline-variant text-right">PRECIO COMPRA</th>
+                        <th class="p-sm border-b border-outline-variant">PROVEEDOR</th>
+                        <th class="p-sm border-b border-outline-variant">OBSERVACION</th>
+                        <th class="p-sm border-b border-outline-variant text-center">HISTORIAL</th>
+                        <th class="p-sm pr-md border-b border-outline-variant text-center">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant font-body-md text-body-md text-on-surface">
+                    <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer h-12">
+                        <td class="p-sm pl-md text-primary hover:underline">S/N: 7A-9012-3456</td>
+                        <td class="p-sm text-on-surface">Precision Serie 7000</td>
+                        <td class="p-sm text-on-surface">Gris Espacial</td>
+                        <td class="p-sm text-on-surface">Disponible</td>
+                        <td class="p-sm text-on-surface">USD</td>
+                        <td class="p-sm text-right">$2,100.00</td>
+                        <td class="p-sm text-on-surface">Dell Enterprise</td>
+                        <td class="p-sm text-on-surface-variant">Sin detalles</td>
+                        <td class="p-sm text-center"><button class="text-primary hover:underline font-label-md text-label-md js-history-btn">Historial</button></td>
+                        <td class="p-sm pr-md text-center">
+                            <div class="flex justify-center gap-sm">
+                                <button class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
+                                <button class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer h-12">
+                        <td class="p-sm pl-md text-primary hover:underline">S/N: PF-1234-ABCD</td>
+                        <td class="p-sm text-on-surface">ThinkPad T14 Gen 3</td>
+                        <td class="p-sm text-on-surface">Negro Mate</td>
+                        <td class="p-sm text-on-surface">En Reparación</td>
+                        <td class="p-sm text-on-surface">USD</td>
+                        <td class="p-sm text-right">$1,150.00</td>
+                        <td class="p-sm text-on-surface">Lenovo Latam</td>
+                        <td class="p-sm text-on-surface-variant">Cambio de pantalla</td>
+                        <td class="p-sm text-center"><button class="text-primary hover:underline font-label-md text-label-md js-history-btn">Historial</button></td>
+                        <td class="p-sm pr-md text-center">
+                            <div class="flex justify-center gap-sm">
+                                <button class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
+                                <button class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Fila ficticia adicional para mantener la consistencia con tu historia -->
+                    <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer h-12">
+                        <td class="p-sm pl-md text-primary hover:underline">S/N: MZ-9988-XY</td>
+                        <td class="p-sm text-on-surface">iPhone 13 Pro (Refurbished)</td>
+                        <td class="p-sm text-on-surface">Sierra Blue</td>
+                        <td class="p-sm text-on-surface">Disponible</td>
+                        <td class="p-sm text-on-surface">ARS</td>
+                        <td class="p-sm text-right">$850,000.00</td>
+                        <td class="p-sm text-on-surface">Distribuidor Local</td>
+                        <td class="p-sm text-on-surface-variant">Ingreso lote Mendoza</td>
+                        <td class="p-sm text-center"><button class="text-primary hover:underline font-label-md text-label-md js-history-btn">Historial</button></td>
+                        <td class="p-sm pr-md text-center">
+                            <div class="flex justify-center gap-sm">
+                                <button class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
+                                <button class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination / Table Footer -->
+        <div class="p-sm border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-body-md text-on-surface-variant rounded-b-lg">
+            <span>Mostrando 1-3 de 24 resultados</span>
+            <div class="flex items-center gap-xs">
+                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high text-on-surface-variant disabled:opacity-50" disabled="">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">chevron_left</span>
+                </button>
+                <button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-label-md text-label-md">1</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high font-label-md text-label-md">2</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high font-label-md text-label-md">3</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high text-on-surface-variant">
+                    <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Micro-interaction script -->
+<script>
+    document.querySelectorAll('button:has([data-icon="add"])').forEach(btn => {
+        btn.addEventListener('click', () => {
+            alert('Abriendo modal de Nuevo Dispositivo...');
+        });
+    });
+</script>
+
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-[#00000080]" id="history-modal">
+    <div class="bg-surface-container-lowest w-full max-w-md rounded-xl shadow-lg overflow-hidden border border-outline-variant">
+        <div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+            <h3 class="font-headline-md text-headline-md">Historial de Movimientos</h3>
+            <button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface" id="close-modal">close</button>
+        </div>
+        <div class="p-lg space-y-md">
+            <div class="flex gap-md">
+                <div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-primary"></div><div class="w-0.5 h-full bg-outline-variant"></div></div>
+                <div><p class="font-label-md text-primary">15 Oct 2023</p><p class="font-body-md font-bold">Ingreso a Inventario</p><p class="text-sm text-on-surface-variant">Sede Central - Recepción</p></div>
+            </div>
+            <div class="flex gap-md">
+                <div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-outline"></div><div class="w-0.5 h-full bg-outline-variant"></div></div>
+                <div><p class="font-label-md text-on-surface-variant">20 Oct 2023</p><p class="font-body-md font-bold">Asignado a Técnico</p><p class="text-sm text-on-surface-variant">Mantenimiento Preventivo</p></div>
+            </div>
+            <div class="flex gap-md">
+                <div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-outline"></div></div>
+                <div><p class="font-label-md text-on-surface-variant">Hoy</p><p class="font-body-md font-bold">Disponible para Venta</p><p class="text-sm text-on-surface-variant">Showroom Principal</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('history-modal');
+    const closeBtn = document.getElementById('close-modal');
+    document.querySelectorAll('.js-history-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            modal.classList.remove('hidden');
+        });
+    });
+    closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.add('hidden');
+    });
+</script>
+{% endblock %}

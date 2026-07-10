@@ -1,0 +1,8 @@
+
+admin:
+	- user: admin
+	- pass: tecphone
+
+vendedor:
+	- user: joseluis
+	- pass: joseluis123456789

@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel de Control - TecPhone{% endblock %}
+
+{% block nav_panel %}bg-secondary-container text-on-secondary-container border-l-4 border-primary icon-fill{% endblock %}
+
+{% block content %}
+<div class="max-w-[container-max] mx-auto space-y-xl">
+    <header>
+        <h1 class="font-display text-display text-on-surface mb-sm">Panel de Control</h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant">Resumen del rendimiento comercial</p>
+    </header>
+
+    <section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-sm">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-lg border-b border-outline-variant pb-sm gap-md">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Ganancias Mensuales</h3>
+            <div class="flex flex-wrap items-center gap-sm">
+                <div class="flex flex-col">
+                    <label class="text-caption font-label-md text-on-surface-variant mb-xs">Desde</label>
+                    <input class="text-body-md border border-outline-variant rounded-sm px-sm py-1 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="month">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-caption font-label-md text-on-surface-variant mb-xs">Hasta</label>
+                    <input class="text-body-md border border-outline-variant rounded-sm px-sm py-1 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="month">
+                </div>
+                <button class="mt-auto bg-primary text-on-primary px-md py-1 rounded-sm font-label-md hover:opacity-90 transition-all">Actualizar Vista</button>
+            </div>
+        </div>
+        <div class="w-full relative flex items-end px-sm gap-md h-48">
+            <div class="absolute inset-0 flex flex-col justify-between pointer-events-none py-2">
+                <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$200k</span></div>
+                <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$150k</span></div>
+                <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$100k</span></div>
+                <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$50k</span></div>
+                <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$0</span></div>
+            </div>
+            <div class="flex-1 bg-primary rounded-t-sm h-[40%] relative group"><div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-caption px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">€ 42k</div></div>
+            <div class="flex-1 bg-primary rounded-t-sm h-[55%] relative group"></div>
+            <div class="flex-1 bg-primary rounded-t-sm h-[45%] relative group"></div>
+            <div class="flex-1 bg-primary rounded-t-sm h-[70%] relative group"></div>
+            <div class="flex-1 bg-primary rounded-t-sm h-[85%] relative group"></div>
+            <div class="flex-1 bg-primary rounded-t-sm h-[95%] relative group"></div>
+        </div>
+        <div class="flex justify-between mt-sm text-caption font-caption text-on-surface-variant px-sm">
+            <span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span>
+        </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+        <div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-sm">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-lg border-b border-outline-variant pb-sm gap-md">
+                <h3 class="font-headline-md text-headline-md text-on-surface">Ganancias Diarias</h3>
+                <div class="flex flex-wrap items-center gap-sm">
+                    <div class="flex flex-col">
+                        <label class="text-caption font-label-md text-on-surface-variant mb-xs">Fecha Inicio</label>
+                        <input class="text-body-md border border-outline-variant rounded-sm px-sm py-1 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="date">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-caption font-label-md text-on-surface-variant mb-xs">Fecha Fin</label>
+                        <input class="text-body-md border border-outline-variant rounded-sm px-sm py-1 bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none" type="date">
+                    </div>
+                    <button class="mt-auto bg-primary text-on-primary px-md py-1 rounded-sm font-label-md hover:opacity-90 transition-all">Filtrar</button>
+                </div>
+            </div>
+            <div class="w-full relative flex items-end px-sm gap-xs h-48">
+                <div class="absolute inset-0 flex flex-col justify-between pointer-events-none py-2">
+                    <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$200k</span></div>
+                    <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$150k</span></div>
+                    <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$100k</span></div>
+                    <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$50k</span></div>
+                    <div class="border-b border-surface-variant w-full h-0 flex justify-end items-end"><span class="text-[10px] text-on-surface-variant pr-1">$0</span></div>
+                </div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[30%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[45%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[25%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[60%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[50%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[75%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[40%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[55%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[35%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[80%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[65%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary-fixed-dim rounded-t-sm h-[90%] hover:bg-primary transition-colors relative group"></div>
+                <div class="flex-1 bg-primary rounded-t-sm h-[95%] relative group"></div>
+            </div>
+            <div class="flex justify-between mt-sm text-caption font-caption text-on-surface-variant px-sm">
+                <span>01 Jul</span><span>05 Jul</span><span>10 Jul</span><span>15 Jul</span><span>20 Jul</span><span>25 Jul</span><span>30 Jul</span>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-sm">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-lg border-b border-outline-variant pb-sm gap-md">
+                <h3 class="font-headline-md text-headline-md text-on-surface">Ventas del Día (Unidades)</h3>
+                <div class="flex items-center gap-sm">
+                    <span class="font-label-md text-label-md text-on-surface-variant">Total periodo: 412 unidades</span>
+                </div>
+            </div>
+            <div class="w-full relative flex items-end px-sm gap-xs h-48">
+                <div class="absolute inset-0 flex flex-col justify-between pointer-events-none py-2">
+                    <div class="border-b border-surface-variant w-full h-0"></div>
+                    <div class="border-b border-surface-variant w-full h-0"></div>
+                    <div class="border-b border-surface-variant w-full h-0"></div>
+                    <div class="border-b border-surface-variant w-full h-0"></div>
+                </div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[20%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[35%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[55%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[40%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[65%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[45%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[80%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[60%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[30%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[85%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[70%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary-fixed-dim rounded-t-sm h-[50%] hover:bg-secondary transition-colors relative group"></div>
+                <div class="flex-1 bg-secondary rounded-t-sm h-[75%] relative group"></div>
+            </div>
+            <div class="flex justify-between mt-sm text-caption font-caption text-on-surface-variant px-sm">
+                <span>01 Jul</span><span>05 Jul</span><span>10 Jul</span><span>15 Jul</span><span>20 Jul</span><span>25 Jul</span><span>30 Jul</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm">
+        <div class="p-md border-b border-outline-variant">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Top Clientes</h3>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-surface-container-low border-b border-outline-variant font-label-md text-label-md text-on-surface-variant">
+                        <th class="p-sm pl-md">Cliente</th>
+                        <th class="p-sm">Industria</th>
+                        <th class="p-sm">Estado</th>
+                        <th class="p-sm pr-md text-right">Gasto Total</th>
+                    </tr>
+                </thead>
+                <tbody class="font-body-md text-body-md text-on-surface">
+                    <tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-10">
+                        <td class="p-sm pl-md font-semibold">Corp Industrial Alfa</td>
+                        <td class="p-sm text-on-surface-variant">Manufactura</td>
+                        <td class="p-sm"><span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-sm text-caption">Activo</span></td>
+                        <td class="p-sm pr-md text-right">€ 45.200</td>
+                    </tr>
+                    <tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-10">
+                        <td class="p-sm pl-md font-semibold">Tecnologías Beta S.A.</td>
+                        <td class="p-sm text-on-surface-variant">Telecomunicaciones</td>
+                        <td class="p-sm"><span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-sm text-caption">Activo</span></td>
+                        <td class="p-sm pr-md text-right">€ 38.900</td>
+                    </tr>
+                    <tr class="border-b border-surface-variant hover:bg-surface-container-low transition-colors h-10">
+                        <td class="p-sm pl-md font-semibold">Sistemas Gamma</td>
+                        <td class="p-sm text-on-surface-variant">Energía</td>
+                        <td class="p-sm"><span class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded-sm text-caption">Inactivo</span></td>
+                        <td class="p-sm pr-md text-right">€ 22.150</td>
+                    </tr>
+                    <tr class="hover:bg-surface-container-low transition-colors h-10">
+                        <td class="p-sm pl-md font-semibold">Logística Delta</td>
+                        <td class="p-sm text-on-surface-variant">Transporte</td>
+                        <td class="p-sm"><span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-sm text-caption">Activo</span></td>
+                        <td class="p-sm pr-md text-right">€ 18.500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
