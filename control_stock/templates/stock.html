@@ -1,58 +1,55 @@
 {% extends 'base.html' %}
 
-{% block title %}Stock - TecPhone{% endblock %}
+{% block title %}Stock - TechPhone{% endblock %}
 
 {% block nav_stock %}bg-secondary-container text-on-secondary-container border-l-4 border-primary icon-fill{% endblock %}
 
 {% block content %}
 <div class="max-w-[1440px] mx-auto space-y-md">
-    <!-- Page Header / Actions -->
     <div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg">
         <div>
             <h1 class="font-display text-display text-on-surface">Stock Dispositivos</h1>
-            <p class="font-body-md text-body-md text-on-surface-variant">Gestión y listado de todos los dispositivos en el inventario central.</p>
+            <p class="font-body-md text-body-md text-on-surface-variant">Gestion y listado de todos los dispositivos en el inventario central.</p>
         </div>
-        <button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded flex items-center gap-sm active:opacity-80 transition-opacity shadow-sm whitespace-nowrap">
+        <button onclick="openCreateModal()" class="bg-primary text-on-primary font-label-md text-label-md px-lg py-sm rounded flex items-center gap-sm active:opacity-80 transition-opacity shadow-sm whitespace-nowrap">
             <span class="material-symbols-outlined" data-icon="add" style="font-size: 18px;">add</span>
             Nuevo Dispositivo
         </button>
     </div>
 
-    <!-- Table Section -->
     <div class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm flex flex-col">
-        <!-- Filters -->
-        <div class="p-md border-b border-outline-variant">
+        <form method="GET" action="{% url 'stock' %}" class="p-md border-b border-outline-variant">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-md items-end">
                 <div class="flex flex-col gap-xs">
-                    <label class="font-label-md text-label-md text-on-surface-variant">Número de Serie</label>
-                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="Ej: S/N: 7A-9012" type="text">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Numero de Serie</label>
+                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="numero_serie" value="{{ filtro_serie }}" placeholder="Ej: S/N: 7A-9012" type="text">
                 </div>
                 <div class="flex flex-col gap-xs">
                     <label class="font-label-md text-label-md text-on-surface-variant">Modelo</label>
-                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="Ej: Precision Serie 7000" type="text">
+                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="modelo" value="{{ filtro_modelo }}" placeholder="Ej: Precision Serie 7000" type="text">
                 </div>
                 <div class="flex flex-col gap-xs md:col-span-1">
-                    <label class="font-label-md text-label-md text-on-surface-variant">Vendedor</label>
-                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" placeholder="Nombre del vendedor" type="text">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Proveedor</label>
+                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="proveedor" value="{{ filtro_proveedor }}" placeholder="Nombre del proveedor" type="text">
                 </div>
-                <div class="flex items-center justify-end h-8">
-                    <button class="flex items-center gap-xs text-primary hover:text-primary-container transition-colors font-label-md text-label-md">
+                <div class="flex items-center justify-end gap-sm h-8">
+                    <button type="submit" class="bg-primary text-on-primary font-label-md text-label-md px-sm py-1 h-8 rounded hover:opacity-90 transition-opacity">Buscar</button>
+                    <a href="{% url 'stock' %}" class="flex items-center gap-xs text-primary hover:text-primary-container transition-colors font-label-md text-label-md">
                         <span class="material-symbols-outlined" style="font-size: 18px;">restart_alt</span>
-                        Restablecer Filtros
-                    </button>
+                        Limpiar
+                    </a>
                 </div>
                 <div class="md:col-span-2 flex flex-col gap-xs">
                     <label class="font-label-md text-label-md text-on-surface-variant">Fecha de Ingreso</label>
                     <div class="flex items-center gap-sm">
-                        <input class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" type="date">
+                        <input class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" type="date" name="fecha_desde" value="{{ filtro_fecha_desde }}">
                         <span class="text-on-surface-variant font-body-md">a</span>
-                        <input class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" type="date">
+                        <input class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" type="date" name="fecha_hasta" value="{{ filtro_fecha_hasta }}">
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
         
-        <!-- Data Table -->
         <div class="overflow-x-auto custom-scrollbar">
             <table class="w-full text-left border-collapse whitespace-nowrap">
                 <thead>
@@ -64,78 +61,79 @@
                         <th class="p-sm border-b border-outline-variant">MONEDA</th>
                         <th class="p-sm border-b border-outline-variant text-right">PRECIO COMPRA</th>
                         <th class="p-sm border-b border-outline-variant">PROVEEDOR</th>
+                        <th class="p-sm border-b border-outline-variant">FECHA INGRESO</th>
                         <th class="p-sm border-b border-outline-variant">OBSERVACION</th>
                         <th class="p-sm border-b border-outline-variant text-center">HISTORIAL</th>
                         <th class="p-sm pr-md border-b border-outline-variant text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-outline-variant font-body-md text-body-md text-on-surface">
-                    <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer h-12">
-                        <td class="p-sm pl-md text-primary hover:underline">S/N: 7A-9012-3456</td>
-                        <td class="p-sm text-on-surface">Precision Serie 7000</td>
-                        <td class="p-sm text-on-surface">Gris Espacial</td>
-                        <td class="p-sm text-on-surface">Disponible</td>
-                        <td class="p-sm text-on-surface">USD</td>
-                        <td class="p-sm text-right">$2,100.00</td>
-                        <td class="p-sm text-on-surface">Dell Enterprise</td>
-                        <td class="p-sm text-on-surface-variant">Sin detalles</td>
-                        <td class="p-sm text-center"><button class="text-primary hover:underline font-label-md text-label-md js-history-btn">Historial</button></td>
+                    {% for celular in celulares %}
+                    <tr class="hover:bg-surface-container-low transition-colors group h-12">
+                        
+                        <td class="p-sm pl-md text-primary font-medium max-w-[150px] truncate cursor-pointer hover:bg-surface-container-high transition-all" 
+                            title="Clic para expandir/contraer"
+                            onclick="this.classList.toggle('truncate'); this.classList.toggle('whitespace-normal'); this.classList.toggle('max-w-[150px]');">
+                            {{ celular.numero_serie }}
+                        </td>
+
+                        <td class="p-sm text-on-surface">{{ celular.id_modelo.id_marca.nombre }} - {{ celular.id_modelo.capacidad }}GB</td>
+                        <td class="p-sm text-on-surface">{{ celular.id_color.nombre }}</td>
+                        <td class="p-sm text-on-surface">
+                            <span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container text-xs font-bold">{{ celular.id_estado.nombre }}</span>
+                        </td>
+                        <td class="p-sm text-on-surface">{{ celular.id_moneda.nombre }}</td>
+                        <td class="p-sm text-right">{{ celular.precio_compra }}</td>
+                        <td class="p-sm text-on-surface">{{ celular.proveedor }}</td>
+                        <td class="p-sm text-on-surface">{{ celular.fecha_ingreso|date:"d/m/Y" }}</td>
+                        
+                        <td class="p-sm text-on-surface-variant max-w-[150px] truncate cursor-pointer hover:bg-surface-container-high transition-all" 
+                            title="Clic para expandir/contraer"
+                            onclick="this.classList.toggle('truncate'); this.classList.toggle('whitespace-normal'); this.classList.toggle('max-w-[150px]');">
+                            {{ celular.observacion|default_if_none:"" }}
+                        </td>
+                        
+                        <td class="p-sm text-center">
+                            <button type="button" class="text-primary hover:underline font-label-md text-label-md js-history-btn" 
+                                    onclick="openHistoryModal('{{ celular.numero_serie|slugify }}', '{{ celular.numero_serie|escapejs }}')">
+                                Historial
+                            </button>
+                            
+                            <template id="logs-{{ celular.numero_serie|slugify }}">
+                                {% for log in celular.logcelular_set.all|dictsortreversed:"fecha_ingreso" %}
+                                <div class="log-data-item" 
+                                     data-fecha="{{ log.fecha_ingreso|date:'d/m/Y H:i' }}" 
+                                     data-user="{% if log.id_user %}{{ log.id_user.username }}{% else %}Sistema{% endif %}" 
+                                     data-value="{{ log.value }}">
+                                </div>
+                                {% empty %}
+                                <div class="no-logs"></div>
+                                {% endfor %}
+                            </template>
+                        </td>
+                        
                         <td class="p-sm pr-md text-center">
                             <div class="flex justify-center gap-sm">
-                                <button class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
-                                <button class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
+                                <button type="button" onclick="openEditModal('{{ celular.numero_serie }}', '{{ celular.id_modelo.id }}', '{{ celular.id_color.id }}', '{{ celular.id_estado.id }}', '{{ celular.id_moneda.id }}', '{{ celular.precio_compra }}', '{{ celular.proveedor }}', '{{ celular.observacion|default_if_none:''|escapejs }}')" class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
+                                <button type="button" onclick="openDeleteModal('{{ celular.numero_serie }}')" class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
                             </div>
                         </td>
                     </tr>
-                    <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer h-12">
-                        <td class="p-sm pl-md text-primary hover:underline">S/N: PF-1234-ABCD</td>
-                        <td class="p-sm text-on-surface">ThinkPad T14 Gen 3</td>
-                        <td class="p-sm text-on-surface">Negro Mate</td>
-                        <td class="p-sm text-on-surface">En Reparación</td>
-                        <td class="p-sm text-on-surface">USD</td>
-                        <td class="p-sm text-right">$1,150.00</td>
-                        <td class="p-sm text-on-surface">Lenovo Latam</td>
-                        <td class="p-sm text-on-surface-variant">Cambio de pantalla</td>
-                        <td class="p-sm text-center"><button class="text-primary hover:underline font-label-md text-label-md js-history-btn">Historial</button></td>
-                        <td class="p-sm pr-md text-center">
-                            <div class="flex justify-center gap-sm">
-                                <button class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
-                                <button class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
-                            </div>
-                        </td>
+                    {% empty %}
+                    <tr class="h-12">
+                        <td colspan="11" class="p-sm pl-md text-on-surface-variant text-center opacity-70">No se encontraron dispositivos en el inventario.</td>
                     </tr>
-                    <!-- Fila ficticia adicional para mantener la consistencia con tu historia -->
-                    <tr class="hover:bg-surface-container-low transition-colors group cursor-pointer h-12">
-                        <td class="p-sm pl-md text-primary hover:underline">S/N: MZ-9988-XY</td>
-                        <td class="p-sm text-on-surface">iPhone 13 Pro (Refurbished)</td>
-                        <td class="p-sm text-on-surface">Sierra Blue</td>
-                        <td class="p-sm text-on-surface">Disponible</td>
-                        <td class="p-sm text-on-surface">ARS</td>
-                        <td class="p-sm text-right">$850,000.00</td>
-                        <td class="p-sm text-on-surface">Distribuidor Local</td>
-                        <td class="p-sm text-on-surface-variant">Ingreso lote Mendoza</td>
-                        <td class="p-sm text-center"><button class="text-primary hover:underline font-label-md text-label-md js-history-btn">Historial</button></td>
-                        <td class="p-sm pr-md text-center">
-                            <div class="flex justify-center gap-sm">
-                                <button class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
-                                <button class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
-                            </div>
-                        </td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
         
-        <!-- Pagination / Table Footer -->
         <div class="p-sm border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-body-md text-on-surface-variant rounded-b-lg">
-            <span>Mostrando 1-3 de 24 resultados</span>
+            <span>Mostrando resultados</span>
             <div class="flex items-center gap-xs">
                 <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high text-on-surface-variant disabled:opacity-50" disabled="">
                     <span class="material-symbols-outlined" style="font-size: 18px;">chevron_left</span>
                 </button>
-                <button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-label-md text-label-md">1</button>
-                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high font-label-md text-label-md">2</button>
-                <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high font-label-md text-label-md">3</button>
                 <button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant hover:bg-surface-container-high text-on-surface-variant">
                     <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
                 </button>
@@ -146,52 +144,253 @@
 {% endblock %}
 
 {% block extra_js %}
-<!-- Micro-interaction script -->
-<script>
-    document.querySelectorAll('button:has([data-icon="add"])').forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('Abriendo modal de Nuevo Dispositivo...');
-        });
-    });
-</script>
-
-<div class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-[#00000080]" id="history-modal">
-    <div class="bg-surface-container-lowest w-full max-w-md rounded-xl shadow-lg overflow-hidden border border-outline-variant">
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-[#00000080]" id="deviceModal">
+    <div class="bg-surface-container-lowest w-full max-w-2xl rounded-xl shadow-lg overflow-hidden border border-outline-variant">
         <div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
-            <h3 class="font-headline-md text-headline-md">Historial de Movimientos</h3>
-            <button class="material-symbols-outlined text-on-surface-variant hover:text-on-surface" id="close-modal">close</button>
+            <h3 class="font-headline-md text-headline-md" id="modalTitle">Nuevo Dispositivo</h3>
+            <button type="button" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface" onclick="closeDeviceModal()">close</button>
         </div>
-        <div class="p-lg space-y-md">
-            <div class="flex gap-md">
-                <div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-primary"></div><div class="w-0.5 h-full bg-outline-variant"></div></div>
-                <div><p class="font-label-md text-primary">15 Oct 2023</p><p class="font-body-md font-bold">Ingreso a Inventario</p><p class="text-sm text-on-surface-variant">Sede Central - Recepción</p></div>
+        
+        <form class="p-lg space-y-md" method="POST" action="{% url 'stock' %}">
+            {% csrf_token %}
+            <input type="hidden" name="accion" id="device_action" value="crear">
+            <input type="hidden" name="numero_serie_original" id="numero_serie_original">
+            
+            <div class="grid grid-cols-2 gap-md">
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Numero de Serie</label>
+                    <input required class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="numero_serie" id="input_numero_serie" type="text">
+                </div>
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Modelo</label>
+                    <select required class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="id_modelo" id="input_id_modelo">
+                        <option value="">Seleccione un modelo</option>
+                        {% for modelo in modelos %}
+                        <option value="{{ modelo.id }}">{{ modelo.id_marca.nombre }} - {{ modelo.capacidad }}GB</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
-            <div class="flex gap-md">
-                <div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-outline"></div><div class="w-0.5 h-full bg-outline-variant"></div></div>
-                <div><p class="font-label-md text-on-surface-variant">20 Oct 2023</p><p class="font-body-md font-bold">Asignado a Técnico</p><p class="text-sm text-on-surface-variant">Mantenimiento Preventivo</p></div>
+            
+            <div class="grid grid-cols-3 gap-md">
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Color</label>
+                    <select required class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="id_color" id="input_id_color">
+                        <option value="">Seleccione color</option>
+                        {% for color in colores %}
+                        <option value="{{ color.id }}">{{ color.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Estado</label>
+                    <select required class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="id_estado" id="input_id_estado">
+                        {% for estado in estados %}
+                        <option value="{{ estado.id }}">{{ estado.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Moneda</label>
+                    <select required class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="id_moneda" id="input_id_moneda">
+                        {% for moneda in monedas %}
+                        <option value="{{ moneda.id }}">{{ moneda.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
-            <div class="flex gap-md">
-                <div class="flex flex-col items-center"><div class="w-3 h-3 rounded-full bg-outline"></div></div>
-                <div><p class="font-label-md text-on-surface-variant">Hoy</p><p class="font-body-md font-bold">Disponible para Venta</p><p class="text-sm text-on-surface-variant">Showroom Principal</p></div>
+            
+            <div class="grid grid-cols-2 gap-md">
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Precio Compra</label>
+                    <input required step="0.01" class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="precio_compra" id="input_precio_compra" type="number">
+                </div>
+                <div class="flex flex-col gap-xs">
+                    <label class="font-label-md text-label-md text-on-surface-variant">Proveedor</label>
+                    <input required class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="proveedor" id="input_proveedor" type="text">
+                </div>
             </div>
+            
+            <div class="flex flex-col gap-xs">
+                <label class="font-label-md text-label-md text-on-surface-variant">Observacion</label>
+                <textarea class="w-full p-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md resize-none" name="observacion" id="input_observacion" rows="2"></textarea>
+            </div>
+            
+            <div class="flex justify-end gap-sm pt-sm border-t border-outline-variant mt-md pt-md">
+                <button class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="closeDeviceModal()" type="button">Cancelar</button>
+                <button class="px-md py-sm rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:opacity-90 transition-opacity" type="submit">Guardar Dispositivo</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="fixed inset-0 bg-[#00000080] z-[100] hidden flex items-center justify-center p-md" id="deleteModal">
+    <div class="bg-surface-container-lowest rounded-xl max-w-sm w-full p-lg shadow-lg">
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-sm">Confirmar Eliminacion</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-lg">¿Esta seguro de que desea eliminar el dispositivo <span id="delete_serie_display" class="font-bold"></span>? Esta accion es permanente.</p>
+        
+        <form method="POST" action="{% url 'stock' %}">
+            {% csrf_token %}
+            <input type="hidden" name="accion" value="eliminar">
+            <input type="hidden" name="numero_serie" id="delete_serie_input">
+            
+            <div class="flex justify-end gap-sm">
+                <button type="button" class="px-md py-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" onclick="closeDeleteModal()">Cancelar</button>
+                <button type="submit" class="px-md py-sm rounded-lg font-label-md text-label-md bg-error text-on-error hover:opacity-90 transition-opacity">Eliminar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-[#00000080] p-md" id="history-modal">
+    <div class="bg-surface-container-lowest w-full max-w-[90vw] rounded-xl shadow-lg overflow-hidden border border-outline-variant flex flex-col max-h-[85vh]">
+        <div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-container-low shrink-0">
+            <h3 class="font-headline-md text-headline-md" id="history-modal-title">Historial de Movimientos</h3>
+            <button type="button" class="material-symbols-outlined text-on-surface-variant hover:text-on-surface" onclick="closeHistoryModal()">close</button>
         </div>
+        
+        <div class="p-md overflow-y-auto custom-scrollbar flex-1" id="history-logs-container">
+            </div>
     </div>
 </div>
 
 <script>
-    const modal = document.getElementById('history-modal');
-    const closeBtn = document.getElementById('close-modal');
-    document.querySelectorAll('.js-history-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            modal.classList.remove('hidden');
-        });
-    });
-    closeBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-    });
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.classList.add('hidden');
-    });
+    function openCreateModal() {
+        document.getElementById('modalTitle').innerText = "Nuevo Dispositivo";
+        document.getElementById('device_action').value = "crear";
+        
+        document.getElementById('input_numero_serie').value = "";
+        document.getElementById('numero_serie_original').value = "";
+        document.getElementById('input_id_modelo').value = "";
+        document.getElementById('input_id_color').value = "";
+        document.getElementById('input_id_estado').value = "";
+        document.getElementById('input_id_moneda').value = "";
+        document.getElementById('input_precio_compra').value = "";
+        document.getElementById('input_proveedor').value = "";
+        document.getElementById('input_observacion').value = "";
+        
+        document.getElementById('deviceModal').classList.remove('hidden');
+    }
+
+    function openEditModal(serie, modelo, color, estado, moneda, precio, proveedor, obs) {
+        document.getElementById('modalTitle').innerText = "Editar Dispositivo";
+        document.getElementById('device_action').value = "editar";
+        
+        document.getElementById('input_numero_serie').value = serie;
+        document.getElementById('numero_serie_original').value = serie;
+        document.getElementById('input_id_modelo').value = modelo;
+        document.getElementById('input_id_color').value = color;
+        document.getElementById('input_id_estado').value = estado;
+        document.getElementById('input_id_moneda').value = moneda;
+        document.getElementById('input_precio_compra').value = precio;
+        document.getElementById('input_proveedor').value = proveedor;
+        document.getElementById('input_observacion').value = obs;
+        
+        document.getElementById('deviceModal').classList.remove('hidden');
+    }
+
+    function closeDeviceModal() {
+        document.getElementById('deviceModal').classList.add('hidden');
+    }
+
+    function openDeleteModal(serie) {
+        document.getElementById('delete_serie_input').value = serie;
+        document.getElementById('delete_serie_display').innerText = serie;
+        document.getElementById('deleteModal').classList.remove('hidden');
+    }
+    
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').classList.add('hidden');
+    }
+
+    function openHistoryModal(serieSlug, serieNormal) {
+        const template = document.getElementById('logs-' + serieSlug);
+        const container = document.getElementById('history-logs-container');
+        
+        document.getElementById('history-modal-title').innerText = "Historial: " + serieNormal;
+        container.innerHTML = '';
+        
+        if (!template) {
+            container.innerHTML = '<div class="text-center text-on-surface-variant py-md">Error al cargar el historial.</div>';
+            document.getElementById('history-modal').classList.remove('hidden');
+            return;
+        }
+
+        const emptyMsg = template.content.querySelector('.no-logs');
+        if (emptyMsg) {
+            container.innerHTML = '<div class="text-center text-on-surface-variant py-md">No hay registros historicos para este dispositivo.</div>';
+        } else {
+            const items = template.content.querySelectorAll('.log-data-item');
+            
+            let allLogs = [];
+            let allKeys = new Set();
+            
+            items.forEach(item => {
+                const fecha = item.getAttribute('data-fecha');
+                const user = item.getAttribute('data-user');
+                const rawValue = item.getAttribute('data-value');
+                
+                let logData = {};
+                try {
+                    logData = JSON.parse(rawValue);
+                    Object.keys(logData).forEach(k => allKeys.add(k));
+                } catch(e) {
+                    logData = { "Mensaje": rawValue };
+                    allKeys.add("Mensaje");
+                }
+                
+                allLogs.push({ fecha, user, data: logData });
+            });
+            
+            const keysArray = Array.from(allKeys);
+            
+            let htmlContent = `
+            <div class="overflow-x-auto border border-outline-variant rounded-lg shadow-sm">
+                <table class="w-full text-left border-collapse whitespace-nowrap">
+                    <thead class="bg-surface-container-low border-b border-outline-variant font-label-md text-label-md text-on-surface-variant uppercase">
+                        <tr>
+                            <th class="p-sm pl-md border-r border-outline-variant">Fecha</th>
+                            <th class="p-sm border-r border-outline-variant">Usuario</th>
+            `;
+            
+            keysArray.forEach(key => {
+                const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                htmlContent += `<th class="p-sm border-r border-outline-variant">${formattedKey}</th>`;
+            });
+            
+            htmlContent += `
+                        </tr>
+                    </thead>
+                    <tbody class="font-body-md text-body-md text-on-surface divide-y divide-surface-variant">
+            `;
+            
+            allLogs.forEach(log => {
+                htmlContent += `<tr class="hover:bg-surface-container-low transition-colors">
+                    <td class="p-sm pl-md border-r border-surface-variant text-primary">${log.fecha}</td>
+                    <td class="p-sm border-r border-surface-variant font-medium">${log.user}</td>
+                `;
+                
+                keysArray.forEach(key => {
+                    const val = (log.data[key] !== undefined && log.data[key] !== null && log.data[key] !== "") ? log.data[key] : '-';
+                    htmlContent += `<td class="p-sm border-r border-surface-variant max-w-[200px] truncate cursor-pointer hover:bg-surface-container-high transition-all" title="Clic para expandir" onclick="this.classList.toggle('truncate'); this.classList.toggle('whitespace-normal');">${val}</td>`;
+                });
+                
+                htmlContent += `</tr>`;
+            });
+            
+            htmlContent += `
+                    </tbody>
+                </table>
+            </div>`;
+            
+            container.innerHTML = htmlContent;
+        }
+        
+        document.getElementById('history-modal').classList.remove('hidden');
+    }
+    
+    function closeHistoryModal() {
+        document.getElementById('history-modal').classList.add('hidden');
+    }
 </script>
 {% endblock %}

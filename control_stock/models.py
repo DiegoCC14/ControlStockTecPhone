@@ -58,12 +58,11 @@ class Celular(models.Model):
         return f"S/N: {self.numero_serie}"
 
 class LogCelular(models.Model):
-    # Mantiene 'dni' como clave primaria segun la estructura del diagrama
     dni = models.AutoField(primary_key=True, db_column='dni')
     id_celular = models.ForeignKey(Celular, on_delete=models.CASCADE, db_column='id_celular')
+    id_user = models.ForeignKey(User, on_delete=models.PROTECT, db_column='id_user', null=True, blank=True)
     value = models.CharField(max_length=4000)
     fecha_ingreso = models.DateTimeField(auto_now_add=True)
-
     def __str__(self):
         return f"Log {self.dni} - Celular: {self.id_celular_id}"
 
