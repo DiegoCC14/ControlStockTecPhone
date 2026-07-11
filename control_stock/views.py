@@ -94,7 +94,7 @@ class StockListView(ListView):
         if filtro_serie:
             queryset = queryset.filter(numero_serie__icontains=filtro_serie)
         if filtro_modelo:
-            queryset = queryset.filter(id_modelo__id_marca__nombre__icontains=filtro_modelo)
+            queryset = queryset.filter(id_modelo__nombre__icontains=filtro_modelo)
         if filtro_proveedor:
             queryset = queryset.filter(proveedor__icontains=filtro_proveedor)
             

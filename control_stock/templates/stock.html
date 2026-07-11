@@ -75,7 +75,7 @@
                             {{ celular.numero_serie }}
                         </td>
 
-                        <td class="p-sm text-on-surface">{{ celular.id_modelo.id_marca.nombre }} - {{ celular.id_modelo.capacidad }}GB</td>
+                        <td class="p-sm text-on-surface">{{ celular.id_modelo.nombre }} - {{ celular.id_modelo.capacidad }}GB</td>
                         <td class="p-sm text-on-surface">{{ celular.id_color.nombre }}</td>
                         <td class="p-sm text-on-surface">
                             <span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container text-xs font-bold">{{ celular.id_estado.nombre }}</span>
@@ -162,7 +162,7 @@
                     <select required class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="id_modelo" id="input_id_modelo">
                         <option value="">Seleccione un modelo</option>
                         {% for modelo in modelos %}
-                        <option value="{{ modelo.id }}">{{ modelo.id_marca.nombre }} - {{ modelo.capacidad }}GB</option>
+                        <option value="{{ modelo.id }}">{{ modelo.nombre }} - {{ modelo.capacidad }}GB</option>
                         {% endfor %}
                     </select>
                 </div>

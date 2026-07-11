@@ -26,8 +26,10 @@ class MarcaModelo(models.Model):
 class ModeloCelular(models.Model):
     id_marca = models.ForeignKey(MarcaModelo, on_delete=models.CASCADE, db_column='id_marca')
     capacidad = models.IntegerField(help_text="Capacidad en GB")
+    nombre = models.CharField(max_length=400,blank=True, null=True)
+
     def __str__(self):
-        return f"Modelo ID {self.id} ({self.capacidad}GB)"
+        return f"{self.nombre} - ({self.capacidad}GB)"
 
 class EstadoReserva(models.Model):
     nombre = models.CharField(max_length=100)
