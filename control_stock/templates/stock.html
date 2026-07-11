@@ -63,14 +63,12 @@
                         <th class="p-sm border-b border-outline-variant">PROVEEDOR</th>
                         <th class="p-sm border-b border-outline-variant">FECHA INGRESO</th>
                         <th class="p-sm border-b border-outline-variant">OBSERVACION</th>
-                        <th class="p-sm border-b border-outline-variant text-center">HISTORIAL</th>
                         <th class="p-sm pr-md border-b border-outline-variant text-center">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-outline-variant font-body-md text-body-md text-on-surface">
                     {% for celular in celulares %}
                     <tr class="hover:bg-surface-container-low transition-colors group h-12">
-                        
                         <td class="p-sm pl-md text-primary font-medium max-w-[150px] truncate cursor-pointer hover:bg-surface-container-high transition-all" 
                             title="Clic para expandir/contraer"
                             onclick="this.classList.toggle('truncate'); this.classList.toggle('whitespace-normal'); this.classList.toggle('max-w-[150px]');">
@@ -93,12 +91,17 @@
                             {{ celular.observacion|default_if_none:"" }}
                         </td>
                         
-                        <td class="p-sm text-center">
-                            <button type="button" class="text-primary hover:underline font-label-md text-label-md js-history-btn" 
-                                    onclick="openHistoryModal('{{ celular.numero_serie|slugify }}', '{{ celular.numero_serie|escapejs }}')">
-                                Historial
-                            </button>
-                            
+                        <td class="p-sm pr-md text-center">
+                            <div class="flex justify-center gap-sm items-center">
+                                <button type="button" class="text-primary hover:underline font-label-md text-label-md font-bold uppercase mr-xs" 
+                                        onclick="openHistoryModal('{{ celular.numero_serie|slugify }}', '{{ celular.numero_serie|escapejs }}')">
+                                    .log
+                                </button>
+                                
+                                <button type="button" onclick="openEditModal('{{ celular.numero_serie }}', '{{ celular.id_modelo.id }}', '{{ celular.id_color.id }}', '{{ celular.id_estado.id }}', '{{ celular.id_moneda.id }}', '{{ celular.precio_compra }}', '{{ celular.proveedor }}', '{{ celular.observacion|default_if_none:''|escapejs }}')" class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
+                                <button type="button" onclick="openDeleteModal('{{ celular.numero_serie }}')" class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
+                            </div>
+
                             <template id="logs-{{ celular.numero_serie|slugify }}">
                                 {% for log in celular.logcelular_set.all|dictsortreversed:"fecha_ingreso" %}
                                 <div class="log-data-item" 
@@ -111,17 +114,10 @@
                                 {% endfor %}
                             </template>
                         </td>
-                        
-                        <td class="p-sm pr-md text-center">
-                            <div class="flex justify-center gap-sm">
-                                <button type="button" onclick="openEditModal('{{ celular.numero_serie }}', '{{ celular.id_modelo.id }}', '{{ celular.id_color.id }}', '{{ celular.id_estado.id }}', '{{ celular.id_moneda.id }}', '{{ celular.precio_compra }}', '{{ celular.proveedor }}', '{{ celular.observacion|default_if_none:''|escapejs }}')" class="material-symbols-outlined hover:text-primary transition-colors text-primary" style="font-size: 18px;">edit</button>
-                                <button type="button" onclick="openDeleteModal('{{ celular.numero_serie }}')" class="material-symbols-outlined hover:text-error transition-colors text-error" style="font-size: 18px;">delete</button>
-                            </div>
-                        </td>
                     </tr>
                     {% empty %}
                     <tr class="h-12">
-                        <td colspan="11" class="p-sm pl-md text-on-surface-variant text-center opacity-70">No se encontraron dispositivos en el inventario.</td>
+                        <td colspan="10" class="p-sm pl-md text-on-surface-variant text-center opacity-70">No se encontraron dispositivos en el inventario.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -255,6 +251,7 @@
 </div>
 
 <script>
+    
     function openCreateModal() {
         document.getElementById('modalTitle').innerText = "Nuevo Dispositivo";
         document.getElementById('device_action').value = "crear";
@@ -268,6 +265,9 @@
         document.getElementById('input_precio_compra').value = "";
         document.getElementById('input_proveedor').value = "";
         document.getElementById('input_observacion').value = "";
+        
+        document.getElementById('input_id_estado').disabled = true;
+        document.getElementById('input_id_estado').parentElement.style.display = 'none';
         
         document.getElementById('deviceModal').classList.remove('hidden');
     }
@@ -286,6 +286,9 @@
         document.getElementById('input_proveedor').value = proveedor;
         document.getElementById('input_observacion').value = obs;
         
+        document.getElementById('input_id_estado').disabled = true;
+        document.getElementById('input_id_estado').parentElement.style.display = 'none';
+
         document.getElementById('deviceModal').classList.remove('hidden');
     }
 
@@ -321,9 +324,7 @@
             container.innerHTML = '<div class="text-center text-on-surface-variant py-md">No hay registros historicos para este dispositivo.</div>';
         } else {
             const items = template.content.querySelectorAll('.log-data-item');
-            
-            let allLogs = [];
-            let allKeys = new Set();
+            let htmlContent = '<div class="space-y-lg">';
             
             items.forEach(item => {
                 const fecha = item.getAttribute('data-fecha');
@@ -333,56 +334,49 @@
                 let logData = {};
                 try {
                     logData = JSON.parse(rawValue);
-                    Object.keys(logData).forEach(k => allKeys.add(k));
                 } catch(e) {
                     logData = { "Mensaje": rawValue };
-                    allKeys.add("Mensaje");
                 }
-                
-                allLogs.push({ fecha, user, data: logData });
-            });
-            
-            const keysArray = Array.from(allKeys);
-            
-            let htmlContent = `
-            <div class="overflow-x-auto border border-outline-variant rounded-lg shadow-sm">
-                <table class="w-full text-left border-collapse whitespace-nowrap">
-                    <thead class="bg-surface-container-low border-b border-outline-variant font-label-md text-label-md text-on-surface-variant uppercase">
-                        <tr>
-                            <th class="p-sm pl-md border-r border-outline-variant">Fecha</th>
-                            <th class="p-sm border-r border-outline-variant">Usuario</th>
-            `;
-            
-            keysArray.forEach(key => {
-                const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                htmlContent += `<th class="p-sm border-r border-outline-variant">${formattedKey}</th>`;
-            });
-            
-            htmlContent += `
-                        </tr>
-                    </thead>
-                    <tbody class="font-body-md text-body-md text-on-surface divide-y divide-surface-variant">
-            `;
-            
-            allLogs.forEach(log => {
-                htmlContent += `<tr class="hover:bg-surface-container-low transition-colors">
-                    <td class="p-sm pl-md border-r border-surface-variant text-primary">${log.fecha}</td>
-                    <td class="p-sm border-r border-surface-variant font-medium">${log.user}</td>
+
+                // Generamos la tarjeta estilo "Datetime - User"
+                htmlContent += `
+                <div class="mb-md">
+                    <h4 class="font-headline-md text-headline-md text-on-surface mb-sm">
+                        ${fecha} - ${user}
+                    </h4>
+                    
+                    <div class="border border-outline-variant rounded-lg overflow-x-auto bg-surface-container-lowest">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <tbody class="font-body-md text-body-md text-on-surface">
                 `;
                 
-                keysArray.forEach(key => {
-                    const val = (log.data[key] !== undefined && log.data[key] !== null && log.data[key] !== "") ? log.data[key] : '-';
-                    htmlContent += `<td class="p-sm border-r border-surface-variant max-w-[200px] truncate cursor-pointer hover:bg-surface-container-high transition-all" title="Clic para expandir" onclick="this.classList.toggle('truncate'); this.classList.toggle('whitespace-normal');">${val}</td>`;
+                const keys = Object.keys(logData);
+                const values = Object.values(logData);
+
+                // Cabeceras (1 sola fila)
+                htmlContent += `<tr class="bg-surface-container-low border-b border-outline-variant font-label-md text-label-md text-on-surface uppercase">`;
+                keys.forEach(key => {
+                    const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    htmlContent += `<th class="p-sm pl-md border-r border-outline-variant">${formattedKey}</th>`;
                 });
-                
                 htmlContent += `</tr>`;
+
+                // Valores (1 sola fila)
+                htmlContent += `<tr class="hover:bg-surface-container-low transition-colors">`;
+                values.forEach(val => {
+                    const safeVal = (val !== null && val !== undefined) ? val : '-';
+                    htmlContent += `<td class="p-sm pl-md border-r border-surface-variant max-w-[200px] truncate cursor-pointer hover:bg-surface-container-high transition-all" title="Clic para expandir" onclick="this.classList.toggle('truncate'); this.classList.toggle('whitespace-normal');">${safeVal}</td>`;
+                });
+                htmlContent += `</tr>`;
+                
+                htmlContent += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>`;
             });
             
-            htmlContent += `
-                    </tbody>
-                </table>
-            </div>`;
-            
+            htmlContent += '</div>';
             container.innerHTML = htmlContent;
         }
         
