@@ -144,41 +144,13 @@
             <!-- Added Title for mobile context -->
             <span class="font-headline-md text-surface-container-lowest md:hidden">TecPhone</span>
         </div>
-        
-        <!-- SECCIÓN DE USUARIO MODIFICADA -->
-        <div class="flex items-center gap-md relative">
-            <button id="user-menu-btn" onclick="toggleUserMenu()" class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-primary-fixed transition-shadow">
-                <!-- Si el usuario tiene imagen, puedes poner su lógica aquí. Por ahora dejamos la tuya -->
+        <div class="flex items-center gap-md">
+            <div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center">
                 <img alt="User profile" class="object-cover w-full h-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1ld-aASKAWHsozob57R8d3EY4iUaszK7CJP5KyoCsPDn0LV0oE2NTkxHylv_OZSPh7lNDbdkXOQ7Z2ueY7idnps09scb3QgyBE9u404_mwlfnxtplSKjipCqJh9f89_munkdZLeu1u6XJr-y1XXuDQIrjb8rHG_xDjZBWi9-kLu3b4Kal3XHJTEwkEuM-FFlaTeodpomXn7lp6TVEUwZhFGrUyNjqM7S8kMvgFallKqes2qFVTV6kYg">
-            </button>
-
-            <!-- Burbuja de perfil (Dropdown) -->
-            <div id="user-menu-bubble" class="hidden absolute right-0 top-12 w-56 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg z-50 flex-col overflow-hidden">
-                {% if request.user.is_authenticated %}
-                <!-- Información del usuario de Django -->
-                <div class="px-4 py-3 border-b border-outline-variant bg-surface-container-low">
-                    <p class="text-on-surface font-label-md text-sm font-bold truncate">
-                        {{ request.user.username }}
-                    </p>
-                    <p class="text-on-surface-variant font-caption text-xs truncate">Permisos: {{ request.user.groups.all.0.name }}</p>
-                </div>
-                
-                <!-- Botón de Cerrar Sesión (Usando POST, que es el estándar en versiones modernas de Django) -->
-                <form action="{% url 'logout' %}" method="post" class="w-full m-0">
-                    {% csrf_token %}
-                    <button type="submit" class="w-full text-left px-4 py-3 text-error font-label-md hover:bg-error-container hover:text-on-error-container transition-colors flex items-center gap-2">
-                        <span class="material-symbols-outlined text-[18px]">logout</span>
-                        Cerrar Sesión
-                    </button>
-                </form>
-                {% else %}
-                <div class="px-4 py-3">
-                    <p class="text-on-surface font-label-md text-sm">No has iniciado sesión</p>
-                </div>
-                {% endif %}
             </div>
         </div>
     </header>
+
     <div class="flex pt-16 h-screen overflow-hidden">
         
         <!-- Overlay (Dark background when mobile menu is open) -->
@@ -197,12 +169,12 @@
                         <span class="font-label-md text-label-md">Panel de Control</span>
                     </a>
                 </li> -->
-                <li>
+                <!-- <li>
                     <a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out {% block nav_ventas %}{% endblock %}" href="{% url 'ventas' %}">
                         <span class="material-symbols-outlined">payments</span>
                         <span class="font-label-md text-label-md">Ventas</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a class="flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-all duration-150 ease-in-out {% block nav_stock %}{% endblock %}" href="{% url 'stock' %}">
                         <span class="material-symbols-outlined">devices</span>
@@ -232,8 +204,6 @@
     </div>
     
     <script>
-        
-        // Función existente para el menú lateral
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             const overlay = document.getElementById('mobile-overlay');
@@ -249,30 +219,6 @@
                 overlay.classList.add('hidden');
             }
         }
-
-        // NUEVA Función para la burbuja de usuario
-        function toggleUserMenu() {
-            const bubble = document.getElementById('user-menu-bubble');
-            if (bubble.classList.contains('hidden')) {
-                bubble.classList.remove('hidden');
-                bubble.classList.add('flex');
-            } else {
-                bubble.classList.add('hidden');
-                bubble.classList.remove('flex');
-            }
-        }
-
-        // NUEVO: Cerrar la burbuja si se hace clic fuera de ella
-        document.addEventListener('click', function(event) {
-            const bubble = document.getElementById('user-menu-bubble');
-            const userBtn = document.getElementById('user-menu-btn');
-            
-            // Si el clic no fue dentro de la burbuja ni en el botón de perfil, esconder
-            if (bubble && !bubble.contains(event.target) && !userBtn.contains(event.target)) {
-                bubble.classList.add('hidden');
-                bubble.classList.remove('flex');
-            }
-        });
     </script>
     {% block extra_js %}{% endblock %}
 </body>

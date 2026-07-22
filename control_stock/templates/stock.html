@@ -20,10 +20,20 @@
     <div class="bg-surface-container-lowest border border-outline-variant rounded shadow-sm flex flex-col">
         <form method="GET" action="{% url 'stock' %}" class="p-md border-b border-outline-variant">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-md items-end">
+                
                 <div class="flex flex-col gap-xs">
                     <label class="font-label-md text-label-md text-on-surface-variant">Numero de Serie</label>
-                    <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="numero_serie" value="{{ filtro_serie }}" placeholder="Ej: S/N: 7A-9012" type="text">
+                    <div class="flex items-center gap-xs">
+                        <!-- Se agregó un ID al input para poder acceder a él desde JS -->
+                        <input id="input-numero-serie" class="flex-1 h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="numero_serie" value="{{ filtro_serie }}" placeholder="Ej: S/N: 7A-9012" type="text">
+                        
+                        <!-- Botón de escáner -->
+                        <button type="button" onclick="startBarcodeScanner()" class="h-8 w-10 flex items-center justify-center bg-secondary-container text-on-secondary-container rounded border border-outline-variant hover:bg-secondary hover:text-on-secondary transition-colors" title="Escanear código de barras">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">barcode_scanner</span>
+                        </button>
+                    </div>
                 </div>
+                
                 <div class="flex flex-col gap-xs">
                     <label class="font-label-md text-label-md text-on-surface-variant">Modelo</label>
                     <input class="h-8 px-sm bg-surface-container-lowest border border-outline-variant rounded focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md" name="modelo" value="{{ filtro_modelo }}" placeholder="Ej: Precision Serie 7000" type="text">
@@ -137,6 +147,28 @@
         </div>
     </div>
 </div>
+
+<div id="scanner-modal" class="fixed inset-0 bg-[#000000cc] z-[100] hidden flex-col items-center justify-center p-md">
+    <div class="bg-surface-container-lowest rounded-xl overflow-hidden w-full max-w-md shadow-xl flex flex-col border border-outline-variant">
+        <div class="flex justify-between items-center p-md border-b border-outline-variant bg-surface-container-low">
+            <h3 class="font-headline-md text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined">qr_code_scanner</span>
+                Escanear Código
+            </h3>
+            <button type="button" onclick="stopBarcodeScanner()" class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors">close</button>
+        </div>
+        
+        <!-- Contenedor del video de la cámara -->
+        <div class="relative bg-black flex justify-center w-full min-h-[300px]" id="reader-container">
+            <div id="reader" class="w-full h-full"></div>
+        </div>
+        
+        <div class="p-md text-center text-on-surface-variant font-label-md bg-surface-container-lowest">
+            Apunta la cámara trasera al código de barras.
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block extra_js %}
@@ -249,6 +281,73 @@
             </div>
     </div>
 </div>
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<script>
+    let html5QrcodeScanner = null;
+
+    function startBarcodeScanner() {
+        console.log("Iniciado -->>")
+        const modal = document.getElementById('scanner-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        // Inicializar el lector
+        if (!html5QrcodeScanner) {
+            html5QrcodeScanner = new Html5Qrcode("reader");
+        }
+
+        // Configuración para leer códigos de barras estandar (rectangular)
+        const config = { 
+            fps: 10, 
+            qrbox: { width: 250, height: 100 },
+            aspectRatio: 1.0 
+        };
+        
+        // facingMode: "environment" fuerza a usar la cámara trasera (vital para iPhone)
+        html5QrcodeScanner.start(
+            { facingMode: "environment" }, 
+            config, 
+            onScanSuccess, 
+            onScanFailure
+        ).catch(err => {
+            console.error(err);
+            alert("No se pudo acceder a la cámara. Por favor, asegúrate de haber dado los permisos necesarios en tu navegador.");
+            stopBarcodeScanner();
+        });
+    }
+
+    function onScanSuccess(decodedText, decodedResult) {
+        // 1. Detener la cámara
+        stopBarcodeScanner();
+        
+        // 2. Colocar el código leído en el input
+        const input = document.getElementById('input-numero-serie');
+        input.value = decodedText;
+        
+        // 3. (Opcional) Enviar el formulario automáticamente tras escanear:
+        // input.closest('form').submit();
+    }
+
+    function onScanFailure(error) {
+        // Se llama constantemente mientras busca un código válido.
+        // No hacer nada aquí para no saturar la consola o la pantalla.
+    }
+
+    function stopBarcodeScanner() {
+        const modal = document.getElementById('scanner-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        
+        if (html5QrcodeScanner && html5QrcodeScanner.isScanning) {
+            html5QrcodeScanner.stop().then((ignore) => {
+                // Escáner detenido
+            }).catch((err) => {
+                console.error("Error al detener el escáner.", err);
+            });
+        }
+    }
+</script>
 
 <script>
     
